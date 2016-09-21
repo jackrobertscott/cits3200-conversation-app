@@ -30,6 +30,12 @@
         templateUrl: 'main/templates/venting.html',
         controller: 'VentingController',
         controllerAs: 'vm',
+      })
+      .state('timer', {
+        url: '/timer',
+        templateUrl: 'main/templates/timer.html',
+        controller: 'TimerController',
+        controllerAs: 'vm',
       });
   }
 })();

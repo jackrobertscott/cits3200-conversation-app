@@ -1,12 +1,12 @@
 (function() {
   angular
     .module('main')
-    .factory('ventingService', ventingService);
+    .factory('timerService', timerService);
 
-  ventingService.$inject = [];
+  timerService.$inject = [];
 
   /* @ngInject */
-  function ventingService() {
+  function timerService() {
     var service = {
       example: example
     };
