@@ -1,6 +1,4 @@
 (function() {
-  'use strict';
-
   angular
     .module('main')
     .factory('authService', authService);

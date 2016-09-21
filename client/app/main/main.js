@@ -16,9 +16,16 @@
     // The state is placed in the <ion-nav-view> in the index.html
     $stateProvider
       .state('auth', {
-        url: '/auth',
+        url: '/',
         templateUrl: 'main/templates/auth.html',
-        controller: 'AuthController as vm'
+        controller: 'AuthController',
+        controllerAs: 'vm',
+      })
+      .state('venting', {
+        url: '/venting',
+        templateUrl: 'main/templates/venting.html',
+        controller: 'VentingController',
+        controllerAs: 'vm',
       });
   }
 })();
