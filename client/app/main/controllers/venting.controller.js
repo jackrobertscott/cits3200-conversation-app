@@ -3,10 +3,10 @@
     .module('main')
     .controller('VentingController', VentingController);
 
-  VentingController.$inject = [];
+  VentingController.$inject = ['ventingService'];
 
   /* @ngInject */
-  function VentingController() {
+  function VentingController(ventingService) {
     var vm = this;
     vm.message = '';
 

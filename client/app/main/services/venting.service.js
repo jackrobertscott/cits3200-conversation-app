@@ -3,10 +3,10 @@
     .module('main')
     .factory('ventingService', ventingService);
 
-  ventingService.$inject = ['dependencies'];
+  ventingService.$inject = [];
 
   /* @ngInject */
-  function ventingService(dependencies) {
+  function ventingService() {
     var service = {
       example: example
     };
