@@ -21,6 +21,10 @@
         controller: 'AuthController',
         controllerAs: 'vm',
       })
+      .state('menu', {
+        url: '/menu',
+        templateUrl: 'main/templates/menu.html',
+      })
       .state('venting', {
         url: '/venting',
         templateUrl: 'main/templates/venting.html',
