@@ -36,6 +36,12 @@
         templateUrl: 'main/templates/timer.html',
         controller: 'TimerController',
         controllerAs: 'vm',
+      })
+      .state('prepare', {
+        url: '/prepare',
+        templateUrl: 'main/templates/prepare.html',
+        controller: 'PrepareController',
+        controllerAs: 'vm',
       });
   }
 })();
