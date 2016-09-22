@@ -5,13 +5,18 @@
     .module('main')
     .controller('TimerController', TimerController);
 
-  TimerController.$inject = ['timerService'];
+  TimerController.$inject = ['$interval'/*, 'timerService'*/];
 
   /* @ngInject */
-  function TimerController(timerService) {
+  function TimerController($interval/*, timerService*/) {
     var vm = this;
+    var COUNT_TIME = 90;
     vm.errors = [];
-    vm.exampleCallToDB = exampleCallToDB;
+    vm.count = COUNT_TIME;
+    vm.stopCountdown = stopCountdown;
+    vm.beginCountdown = beginCountdown;
+    vm.resetCountdown = resetCountdown;
+    var status;
 
     activate();
 
@@ -20,14 +25,28 @@
       // can usually ignore this function
     }
 
-    function exampleCallToDB() {
-      timerService.getMeData() // this is a Promise (read about it)
-        .then(function(data) {
-          vm.example = data;
-        })
-        .catch(function(error) {
-          vm.errors.push(error);
-        });
+    function stopCountdown() {
+      if (status) {
+        $interval.cancel(status);
+        status = undefined;
+      }
+    }
+
+    function beginCountdown() {
+      if (!status) {
+        status = $interval(function() {
+          if (vm.count > 0) {
+            vm.count = vm.count - 1;
+          } else {
+            stopCountdown();
+          }
+        }, 1000);
+      }
+    }
+
+    function resetCountdown() {
+      stopCountdown();
+      vm.count = COUNT_TIME;
     }
   }
 })();

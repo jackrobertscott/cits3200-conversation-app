@@ -11,6 +11,10 @@
   function AuthController(authService) {
     var vm = this;
     vm.errors = [];
+    vm.credentials = {
+      username: 'Bob',
+      password: 'Secret',
+    };
     vm.exampleCallToDB = exampleCallToDB;
 
     activate();

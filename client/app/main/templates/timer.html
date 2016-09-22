@@ -2,18 +2,19 @@
   <ion-content class="padding">
     <!-- Content: Start -->
 
-    <ion-list>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-    </ion-list>
+    <h2 class="countdown">
+      {{ vm.count }}
+    </h2>
 
+    <button class="button button-block button-royal" ng-click="vm.beginCountdown()">
+      Start
+    </button>
+    <button class="button button-block button-royal" ng-click="vm.stopCountdown()">
+      Pause
+    </button>
+    <button class="button button-block button-royal" ng-click="vm.resetCountdown()">
+      Reset
+    </button>
     <a class="button button-block button-positive" ui-sref="menu">
       Back to Menu
     </a>
