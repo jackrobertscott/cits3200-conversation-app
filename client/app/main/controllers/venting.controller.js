@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   angular
     .module('main')
@@ -8,7 +10,8 @@
   /* @ngInject */
   function VentingController(ventingService) {
     var vm = this;
-    vm.message = '';
+    vm.errors = [];
+    vm.exampleCallToDB = exampleCallToDB;
 
     activate();
 
@@ -17,8 +20,14 @@
       // can usually ignore this function
     }
 
-    function saveMessage() {
-      // ventingService.saveMessage(vm.message);
+    function exampleCallToDB() {
+      ventingService.getMeData() // this is a Promise (read about it)
+        .then(function(data) {
+          vm.example = data;
+        })
+        .catch(function(error) {
+          vm.errors.push(error);
+        });
     }
   }
 })();

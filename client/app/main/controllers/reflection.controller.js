@@ -3,12 +3,12 @@
 (function() {
   angular
     .module('main')
-    .controller('TimerController', TimerController);
+    .controller('ReflectionController', ReflectionController);
 
-  TimerController.$inject = ['timerService'];
+  ReflectionController.$inject = ['reflectionService'];
 
   /* @ngInject */
-  function TimerController(timerService) {
+  function ReflectionController(reflectionService) {
     var vm = this;
     vm.errors = [];
     vm.exampleCallToDB = exampleCallToDB;
@@ -21,7 +21,7 @@
     }
 
     function exampleCallToDB() {
-      timerService.getMeData() // this is a Promise (read about it)
+      reflectionService.getMeData() // this is a Promise (read about it)
         .then(function(data) {
           vm.example = data;
         })

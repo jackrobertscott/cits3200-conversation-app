@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   angular
     .module('main', [
@@ -41,6 +43,12 @@
         url: '/prepare',
         templateUrl: 'main/templates/prepare.html',
         controller: 'PrepareController',
+        controllerAs: 'vm',
+      })
+      .state('reflection', {
+        url: '/reflection',
+        templateUrl: 'main/templates/reflection.html',
+        controller: 'ReflectionController',
         controllerAs: 'vm',
       });
   }

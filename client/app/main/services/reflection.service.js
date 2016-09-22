@@ -3,12 +3,12 @@
 (function() {
   angular
     .module('main')
-    .factory('authService', authService);
+    .factory('reflectionService', reflectionService);
 
-  authService.$inject = [];
+  reflectionService.$inject = [];
 
   /* @ngInject */
-  function authService() {
+  function reflectionService() {
     var service = {
       example: example
     };

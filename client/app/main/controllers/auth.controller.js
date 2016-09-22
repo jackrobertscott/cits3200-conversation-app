@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   angular
     .module('main')
@@ -8,9 +10,8 @@
   /* @ngInject */
   function AuthController(authService) {
     var vm = this;
-    vm.login = login;
-    vm.logout = logout;
-    vm.user = {};
+    vm.errors = [];
+    vm.exampleCallToDB = exampleCallToDB;
 
     activate();
 
@@ -19,12 +20,14 @@
       // can usually ignore this function
     }
 
-    function login(username, password) {
-      return authService.login(username, password);
-    }
-
-    function logout() {
-      return authService.logout(username, password);
+    function exampleCallToDB() {
+      authService.getMeData() // this is a Promise (read about it)
+        .then(function(data) {
+          vm.example = data;
+        })
+        .catch(function(error) {
+          vm.errors.push(error);
+        });
     }
   }
 })();
