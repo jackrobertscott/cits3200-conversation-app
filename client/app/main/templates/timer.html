@@ -6,15 +6,24 @@
       {{ vm.count }}
     </h2>
 
-    <button class="button button-block button-royal" ng-click="vm.beginCountdown()">
-      Start
-    </button>
-    <button class="button button-block button-royal" ng-click="vm.stopCountdown()">
-      Pause
-    </button>
-    <button class="button button-block button-royal" ng-click="vm.resetCountdown()">
-      Reset
-    </button>
+    <div class="row sharp">
+      <div class="col sharp">
+        <button class="button button-block button-calm" ng-click="vm.beginCountdown()">
+          <i class="icon ion-play"></i>
+        </button>
+      </div>
+      <div class="col padding-horizontal">
+        <button class="button button-block button-calm" ng-click="vm.stopCountdown()">
+          <i class="icon ion-pause"></i>
+        </button>
+      </div>
+      <div class="col sharp">
+        <button class="button button-block button-calm" ng-click="vm.resetCountdown()">
+          <i class="icon ion-refresh"></i>
+        </button>
+      </div>
+    </div>
+
     <a class="button button-block button-positive" ui-sref="menu">
       Back to Menu
     </a>
