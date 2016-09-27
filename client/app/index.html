@@ -22,7 +22,7 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-app="Conversations">
+  <body ng-app="conversations">
 
     <!-- the nav bar will be updated as we navigate between views -->
     <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
@@ -54,6 +54,16 @@
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
     <script src="main/main.js"></script>
+    <script src="main/services/venting.service.js"></script>
+    <script src="main/services/timer.service.js"></script>
+    <script src="main/services/reflection.service.js"></script>
+    <script src="main/services/prepare.service.js"></script>
+    <script src="main/services/auth.service.js"></script>
+    <script src="main/controllers/venting.controller.js"></script>
+    <script src="main/controllers/timer.controller.js"></script>
+    <script src="main/controllers/reflection.controller.js"></script>
+    <script src="main/controllers/prepare.controller.js"></script>
+    <script src="main/controllers/auth.controller.js"></script>
     <script src="main/constants/config-const.js"></script>
     <script src="app.js"></script>
     <!-- endinject -->

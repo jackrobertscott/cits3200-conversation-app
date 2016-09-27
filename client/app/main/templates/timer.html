@@ -1,0 +1,33 @@
+<ion-view view-title="Timer">
+  <ion-content class="padding">
+    <!-- Content: Start -->
+
+    <h2 class="countdown">
+      {{ vm.count }}
+    </h2>
+
+    <div class="row sharp">
+      <div class="col sharp">
+        <button class="button button-block button-calm" ng-click="vm.beginCountdown()">
+          <i class="icon ion-play"></i>
+        </button>
+      </div>
+      <div class="col padding-horizontal">
+        <button class="button button-block button-calm" ng-click="vm.stopCountdown()">
+          <i class="icon ion-pause"></i>
+        </button>
+      </div>
+      <div class="col sharp">
+        <button class="button button-block button-calm" ng-click="vm.resetCountdown()">
+          <i class="icon ion-refresh"></i>
+        </button>
+      </div>
+    </div>
+
+    <a class="button button-block button-positive" ui-sref="menu">
+      Back to Menu
+    </a>
+
+    <!-- Content: End -->
+  </ion-content>
+</ion-view>

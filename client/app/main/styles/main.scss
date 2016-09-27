@@ -21,4 +21,19 @@ $ionicons-font-path: "../assets/fonts" !default;
 // Include all of Ionic
 @import "../../bower_components/ionic/scss/ionic";
 
-
+ion-content {
+  background-color: #f9fcff;
+}
+.countdown {
+  text-align: center;
+  font-size: 100px;
+  padding: 50px 0;
+}
+.row.sharp {
+  padding-left: 0;
+  padding-right: 0;
+}
+.col.sharp {
+  padding-left: 0;
+  padding-right: 0;
+}
