@@ -5,10 +5,10 @@
     .module('main')
     .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['authService', '$state', '$ionicPopup'];
+  AuthController.$inject = ['authService', '$state', '$ionicPopup', '$cookies'];
 
   /* @ngInject */
-  function AuthController(authService, $state, $ionicPopup) {
+  function AuthController(authService, $state, $ionicPopup, $cookies) {
     var vm = this;
     vm.errors = [];
     vm.credentials = {
@@ -17,6 +17,7 @@
     };
     vm.exampleCallToDB = exampleCallToDB;
     vm.login = login;
+    vm.logOut = logOut;
 
     activate();
 
@@ -27,13 +28,19 @@
 
     function login() {
       authService.loginUser(vm.credentials.username, vm.credentials.password).success(function(data) {
+        $cookies.put('auth', JSON.stringify(vm.credentials));
         $state.go('menu');
-      }).error(function(data) {
+      }).error(function() {
         $ionicPopup.alert({
           title: 'Login failed!',
           template: 'Please check your credentials!'
         });
       });
+    }
+
+    function logOut() {
+      $cookies.remove('auth');
+      $state.go('auth');
     }
 
     function exampleCallToDB() {
