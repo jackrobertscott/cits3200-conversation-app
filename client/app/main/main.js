@@ -12,15 +12,15 @@
   function config($stateProvider, $urlRouterProvider) {
     // ROUTING with ui.router
     // Set the starting url as '/'
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
     // Set up the routing states
     // The state is placed in the <ion-nav-view> in the index.html
     $stateProvider
       .state('auth', {
-        url: '/',
-        templateUrl: 'main/templates/auth.html',
-        controller: 'AuthController',
+        url: '/login', //
+        templateUrl: 'main/templates/auth.html', //login.html
+        controller: 'AuthController',  //LoginCtrl
         controllerAs: 'vm',
       })
       .state('menu', {
