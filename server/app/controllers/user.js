@@ -2,24 +2,25 @@
 
 var express = require('express');
 var router = module.exports = express.Router();
-var Venting = require('../models/venting.js');
+var User = require('../models/user.js');
 
 /**
- * Get all the venting objects
+ * Get all the user objects
  */
 router.get('/', function(req, res) {
-  Venting.find({}, function(err, ventings) {
+  User.find({}, function(err, users) {
     if (err) res.send(err);
-    else res.json(ventings);
+    else res.json(users);
   });
 });
 
 /**
- * Make a new venting object
+ * Make a new user object
  */
 router.post('/', function(req, res) {
-  Venting.create({
-    message: req.body.message,
+  User.create({
+    email: req.body.email,
+    password: req.body.password,
   }, function(err) {
     if (err) res.send(err);
     else {
@@ -31,25 +32,26 @@ router.post('/', function(req, res) {
 });
 
 /**
- * Get a single venting object by the given id
+ * Get a single user object by the given id
  */
 router.get('/:id', function(req, res) {
-  Venting.findById(req.params.id, function(err, venting) {
+  User.findById(req.params.id, function(err, user) {
     if (err) res.send(err);
-    else res.json(venting);
+    else res.json(user);
   });
 });
 
 /**
- * Update a venting object
+ * Update a user object
  */
 router.put('/:id', function(req, res) {
-  Venting.findById(req.params.id, function(err, venting) {
+  User.findById(req.params.id, function(err, user) {
     if (err) res.send(err);
     else {
-      venting.message = req.body.message;
+      user.email = req.body.email;
+      user.password = req.body.password;
 
-      venting.save(function(err) {
+      user.save(function(err) {
         if (err) res.send(err);
         else {
           res.json({
@@ -62,10 +64,10 @@ router.put('/:id', function(req, res) {
 });
 
 /**
- * Delete a venting object
+ * Delete a user object
  */
 router.delete('/:id', function(req, res) {
-  Venting.remove({
+  User.remove({
     _id: req.params.id,
   }, function(err) {
     if (err) res.send(err);

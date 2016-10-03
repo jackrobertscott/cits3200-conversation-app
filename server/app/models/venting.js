@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/**
+ * Create Venting schema
+ */
 var VentingSchema = new Schema({
   message: {
     type: String,
@@ -10,4 +13,7 @@ var VentingSchema = new Schema({
   timestamps: true, // This will add createdAt and updatedAt fields
 });
 
-mongoose.model('Venting', VentingSchema);
+/**
+ * Export the Venting model
+ */
+module.exports = mongoose.model('Venting', VentingSchema);
