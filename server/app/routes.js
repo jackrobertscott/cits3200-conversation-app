@@ -2,7 +2,7 @@
 
 var userController = require('./controllers/user.js');
 var ventingController = require('./controllers/venting.js');
-var Auth = require('../auth.js');
+var Auth = require('./auth.js');
 
 module.exports = function(app) {
   app.post('/api/login', Auth.authenticate, function(req, res) {
