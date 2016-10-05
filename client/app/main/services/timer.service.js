@@ -5,8 +5,6 @@
     .module('main')
     .factory('timerService', timerService);
 
-  timerService.$inject = [];
-
   /* @ngInject */
   function timerService() {
     var service = {

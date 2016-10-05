@@ -5,8 +5,6 @@
     .module('main')
     .controller('ReflectionController', ReflectionController);
 
-  ReflectionController.$inject = ['reflectionService'];
-
   /* @ngInject */
   function ReflectionController(reflectionService) {
     var vm = this;

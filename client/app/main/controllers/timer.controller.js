@@ -5,8 +5,6 @@
     .module('main')
     .controller('TimerController', TimerController);
 
-  TimerController.$inject = ['$interval'/*, 'timerService'*/];
-
   /* @ngInject */
   function TimerController($interval/*, timerService*/) {
     var vm = this;

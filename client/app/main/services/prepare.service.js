@@ -5,8 +5,6 @@
     .module('main')
     .factory('prepareService', prepareService);
 
-  prepareService.$inject = [];
-
   /* @ngInject */
   function prepareService() {
     var service = {
