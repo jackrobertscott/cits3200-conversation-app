@@ -10,6 +10,7 @@
     ])
     .config(config);
 
+  /* @ngInject */
   function config($stateProvider, $urlRouterProvider) {
     // ROUTING with ui.router
     // Set the starting url as '/'

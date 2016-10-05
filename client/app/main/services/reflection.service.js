@@ -5,8 +5,6 @@
     .module('main')
     .factory('reflectionService', reflectionService);
 
-  reflectionService.$inject = [];
-
   /* @ngInject */
   function reflectionService() {
     var service = {

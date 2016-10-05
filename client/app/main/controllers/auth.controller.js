@@ -5,8 +5,6 @@
     .module('main')
     .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['authService', '$state', '$ionicPopup', '$cookies'];
-
   /* @ngInject */
   function AuthController(authService, $state, $ionicPopup, $cookies) {
     var vm = this;
@@ -15,7 +13,6 @@
       username: '',
       password: ''
     };
-    vm.exampleCallToDB = exampleCallToDB;
     vm.login = login;
     vm.logOut = logOut;
 
@@ -27,7 +24,7 @@
     }
 
     function login() {
-      authService.loginUser(vm.credentials.username, vm.credentials.password).success(function(data) {
+      authService.loginUser(vm.credentials.username, vm.credentials.password).success(function() {
         $cookies.put('auth', JSON.stringify(vm.credentials));
         $state.go('menu');
       }).error(function() {
@@ -41,16 +38,6 @@
     function logOut() {
       $cookies.remove('auth');
       $state.go('auth');
-    }
-
-    function exampleCallToDB() {
-      authService.getMeData() // this is a Promise (read about it)
-        .then(function(data) {
-          vm.example = data;
-        })
-        .catch(function(error) {
-          vm.errors.push(error);
-        });
     }
   }
 })();

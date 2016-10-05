@@ -5,8 +5,6 @@
     .module('main')
     .controller('VentingController', VentingController);
 
-  VentingController.$inject = ['ventingService'];
-
   /* @ngInject */
   function VentingController(ventingService) {
     var vm = this;

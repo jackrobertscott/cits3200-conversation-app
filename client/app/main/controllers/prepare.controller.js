@@ -5,8 +5,6 @@
     .module('main')
     .controller('PrepareController', PrepareController);
 
-  PrepareController.$inject = ['prepareService'];
-
   /* @ngInject */
   function PrepareController(prepareService) {
     var vm = this;

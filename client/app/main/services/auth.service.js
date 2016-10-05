@@ -5,8 +5,6 @@
     .module('main')
     .factory('authService', authService);
 
-  authService.$inject = ['$q'];
-
   /* @ngInject */
   function authService($q) {
     var service = {
