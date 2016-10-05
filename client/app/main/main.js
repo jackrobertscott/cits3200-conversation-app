@@ -28,30 +28,47 @@
       .state('menu', {
         url: '/menu',
         templateUrl: 'main/templates/menu.html',
+        controller: 'AuthController',
+        controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       })
       .state('venting', {
         url: '/venting',
         templateUrl: 'main/templates/venting.html',
         controller: 'VentingController',
         controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       })
       .state('timer', {
         url: '/timer',
         templateUrl: 'main/templates/timer.html',
         controller: 'TimerController',
         controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       })
       .state('prepare', {
         url: '/prepare',
         templateUrl: 'main/templates/prepare.html',
         controller: 'PrepareController',
         controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       })
       .state('reflection', {
         url: '/reflection',
         templateUrl: 'main/templates/reflection.html',
         controller: 'ReflectionController',
         controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       });
   }
 })();

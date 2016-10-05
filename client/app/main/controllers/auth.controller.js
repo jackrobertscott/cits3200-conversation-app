@@ -25,7 +25,7 @@
 
     function login() {
       authService.loginUser(vm.credentials.username, vm.credentials.password).success(function() {
-        $cookies.put('auth', JSON.stringify(vm.credentials));
+        $cookies.putObject('auth', vm.credentials);
         $state.go('menu');
       }).error(function() {
         $ionicPopup.alert({
@@ -36,6 +36,7 @@
     }
 
     function logOut() {
+      console.log('hello');
       $cookies.remove('auth');
       $state.go('auth');
     }
