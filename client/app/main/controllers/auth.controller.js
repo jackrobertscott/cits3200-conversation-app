@@ -36,7 +36,6 @@
     }
 
     function logOut() {
-      console.log('hello');
       $cookies.remove('auth');
       $state.go('auth');
     }
