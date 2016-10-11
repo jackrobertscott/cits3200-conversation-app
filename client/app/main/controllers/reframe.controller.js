@@ -39,6 +39,12 @@
       // can usually ignore this function
     }
 
+    /*
+    Function for changing which tip is changing.
+    Goes through the array of objects preparationTips one at a time
+    If it gets to the end of the array returns to the start
+    */
+
     function changeTip() {
       if (TIP_INDEX + 1 < MAX_TIPS) {
         TIP_INDEX++;
@@ -46,9 +52,13 @@
       else {
         TIP_INDEX = 0;
       }
-      vm.currentTip.Tip = vm.preparationTips[TIP_INDEX].Tip,
-      vm.preparationTips[TIP_INDEX].SubTip1;
+      vm.currentTip.Tip = vm.preparationTips[TIP_INDEX].Tip; //changing to the new tip
     }
+
+    /*
+    Function for changing the sub tip from two possible.
+    Checks if it is in the first or second subtip then changes to the other
+    */
     function changeSubTip() {
       if (SUBTIP_INDEX === 0) {
         SUBTIP_INDEX = 1;
@@ -58,9 +68,11 @@
         vm.currentTip.SubTip = vm.preparationTips[TIP_INDEX].SubTip1;
       }
     }
-
+    /*
+    Setting the interval for when the tips change
+    */
     $interval(changeTip, 10000);
-    $interval(changeSubTip, 5001);
+    $interval(changeSubTip, 5000);
 
     function exampleCallToDB() {
       reframeService.getMeData() // this is a Promise (read about it)
