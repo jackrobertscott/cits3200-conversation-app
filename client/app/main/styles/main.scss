@@ -4,58 +4,69 @@ in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
 */
-
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #4a87ee !default;
-$calm:                            #43cee6 !default;
-$balanced:                        #66cc33 !default;
-$energized:                       #f0b840 !default;
-$assertive:                       #ef4e3a !default;
-$royal:                           #8a6de9 !default;
-$dark:                            #444 !default;
-
+$light: #fff !default;
+$stable: #f8f8f8 !default;
+$positive: #4a87ee !default;
+$calm: #43cee6 !default;
+$balanced: #66cc33 !default;
+$energized: #f0b840 !default;
+$assertive: #ef4e3a !default;
+$royal: #8a6de9 !default;
+$dark: #444 !default;
 // The path for our ionicons font files, relative to the built & temporary main.css
 $ionicons-font-path: "../assets/fonts" !default;
-
 // Include all of Ionic
 @import "../../bower_components/ionic/scss/ionic";
 
 ion-content {
   background-color: #f9fcff;
 }
+
 .countdown {
   text-align: center;
   font-size: 100px;
   padding: 50px 0;
 }
+
 .row.sharp {
   padding-left: 0;
   padding-right: 0;
 }
+
 .col.sharp {
   padding-left: 0;
   padding-right: 0;
 }
-.list .item.item-accordion {
+
+.list .item-stable.complete {
+  background-color: lighten(green, 65%);
+}
+
+.list .item-accordion {
   line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
-  transition: 0.09s all linear;
+  transition: 0.9s all linear;
 }
-.list .item.item-accordion.ng-hide {
-  line-height: 0px;
+
+.list .item-accordion.ng-hide {
+  line-height: 0;
 }
-.list .item.item-accordion.ng-hide-add,
-.list .item.item-accordion.ng-hide-remove {
+
+.list .item-accordion.ng-hide-add,
+.list .item-accordion.ng-hide-remove {
   display: block !important;
 }
 
-.css-form input.ng-invalid.ng-touched {
-    background-color: #FA787E;
-  }
+.css-form input {
+  margin-left: -20px;
+  padding-left: 20px;
+}
 
-  .css-form input.ng-valid.ng-touched {
-    background-color: #78FA89;
-  }
-  
+.css-form input.ng-invalid.ng-pristine {
+  border-bottom: 2px dashed darken(yellow, 5%);
+}
+
+.css-form input.ng-invalid.ng-touched {
+  border-color: darken(#FA787E, 30%);
+}
