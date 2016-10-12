@@ -8,7 +8,13 @@
   /* @ngInject */
   function PrepareController(prepareService) {
     var vm = this;
+
     vm.errors = [];
+    vm.prepares;
+    vm.submit = submit;
+    vm.toggleListItem = toggleListItem;
+    vm.isListItemShown = isListItemShown;
+    vm.isItemComplete = isItemComplete;
     vm.listItems = [{
       stepName: 'Consider Each Others Wants',
       contents: {
@@ -66,9 +72,16 @@
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
+      vm.prepares = prepareService.get();
     }
 
-    vm.toggleListItem = function(listItem) {
+    function submit() {
+      if (vm.listItems[0].contents.input1.trim()) { // validation
+        vm.prepares.$add(vm.listItems);
+      }
+    }
+
+    function toggleListItem(listItem) {
       if (listItem.contents.input1 !== null && listItem.contents.input1 !== '' &&
         listItem.contents.input2 !== null && listItem.contents.input2 !== '') {
         listItem.contents.completed = true;
@@ -79,14 +92,14 @@
       } else {
         this.shownListItem = listItem;
       }
-    };
+    }
 
-    vm.isListItemShown = function(listItem) {
+    function isListItemShown(listItem) {
       return this.shownListItem === listItem;
-    };
+    }
 
-    vm.isItemComplete = function(listItem) {
+    function isItemComplete(listItem) {
       return listItem.contents.completed;
-    };
+    }
   }
 })();

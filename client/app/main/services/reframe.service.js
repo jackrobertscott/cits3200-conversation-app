@@ -6,15 +6,22 @@
     .factory('reframeService', reframeService);
 
   /* @ngInject */
-  function reframeService() {
+  function reframeService($firebaseObject, $firebaseArray) {
+    var ref = firebase.database().ref().child('reframe');
+
     var service = {
-      example: example
+      get: get,
+      getById: getById,
     };
 
     return service;
 
-    function example() {
-      // code...
+    function get() {
+      return $firebaseArray(ref);
+    }
+
+    function getById(id) {
+      return $firebaseObject(ref.child(id));
     }
   }
 })();

@@ -6,12 +6,12 @@
     .controller('VentingController', VentingController);
 
   /* @ngInject */
-  function VentingController(ventingService, $firebaseArray) {
+  function VentingController(ventingService) {
     var vm = this;
 
     vm.errors = [];
-    vm.venting = '';
-    vm.ventings = [];
+    vm.text = '';
+    vm.ventings;
     vm.create = create;
 
     activate();
@@ -19,17 +19,16 @@
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
-      var ref = firebase.database().ref().child('ventings');
-      vm.ventings = $firebaseArray(ref);
+      vm.ventings = ventingService.get();
     }
 
     function create() {
-      if (vm.venting.trim()) {
+      if (vm.text.trim()) {
         vm.ventings.$add({
-          text: vm.venting,
+          text: vm.text,
           createdAt: Date.now(),
         });
-        vm.venting = '';
+        vm.text = '';
       }
     }
   }

@@ -6,15 +6,22 @@
     .factory('prepareService', prepareService);
 
   /* @ngInject */
-  function prepareService() {
+  function prepareService($firebaseObject, $firebaseArray) {
+    var ref = firebase.database().ref().child('prepare');
+
     var service = {
-      example: example
+      get: get,
+      getById: getById,
     };
 
     return service;
 
-    function example() {
-      // code...
+    function get() {
+      return $firebaseArray(ref);
+    }
+
+    function getById(id) {
+      return $firebaseObject(ref.child(id));
     }
   }
 })();
