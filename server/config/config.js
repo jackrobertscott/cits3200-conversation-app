@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'server'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3200,
     db: 'mongodb://localhost/server-development'
   },
 
@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'server'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3200,
     db: 'mongodb://localhost/server-test'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'server'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3200,
     db: 'mongodb://localhost/server-production'
   }
 };

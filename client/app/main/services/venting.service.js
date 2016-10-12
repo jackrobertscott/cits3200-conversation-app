@@ -8,12 +8,12 @@
   /* @ngInject */
   function ventingService() {
     var service = {
-      example: example
+      create: create
     };
 
     return service;
 
-    function example() {
+    function create() {
       // code...
     }
   }

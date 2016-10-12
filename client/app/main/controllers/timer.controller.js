@@ -9,12 +9,13 @@
   function TimerController($interval/*, timerService*/) {
     var vm = this;
     var COUNT_TIME = 90;
+    var status;
+
     vm.errors = [];
     vm.count = COUNT_TIME;
     vm.stopCountdown = stopCountdown;
     vm.beginCountdown = beginCountdown;
     vm.resetCountdown = resetCountdown;
-    var status;
 
     activate();
 
