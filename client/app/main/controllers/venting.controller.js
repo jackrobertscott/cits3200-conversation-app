@@ -8,6 +8,7 @@
   /* @ngInject */
   function VentingController(ventingService) {
     var vm = this;
+
     vm.errors = [];
     vm.exampleCallToDB = exampleCallToDB;
 

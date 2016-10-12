@@ -8,6 +8,7 @@
   /* @ngInject */
   function AuthController(authService, $state, $ionicPopup, $cookies) {
     var vm = this;
+
     vm.errors = [];
     vm.credentials = {
       username: '',
