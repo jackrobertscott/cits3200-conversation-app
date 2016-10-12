@@ -69,6 +69,15 @@
         data: {
           authenticate: true,
         },
+      })
+      .state('reframe', {
+        url: '/reframe',
+        templateUrl: 'main/templates/reframe.html',
+        controller: 'ReframeController',
+        controllerAs: 'vm',
+        data: {
+          authenticate: true,
+        },
       });
   }
 })();
