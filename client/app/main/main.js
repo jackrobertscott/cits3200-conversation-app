@@ -7,6 +7,7 @@
       'ionic',
       'ngCordova',
       'ui.router',
+      'firebase',
     ])
     .config(config);
 
@@ -16,13 +17,22 @@
     // Set the starting url as '/'
     $urlRouterProvider.otherwise('/login');
 
+    var config = {
+      apiKey: 'AIzaSyD4avcWISHGd6z8ti1JL7XQOLku6fpCQWU',
+      authDomain: 'cits3200-app-conversation.firebaseapp.com',
+      databaseURL: 'https://cits3200-app-conversation.firebaseio.com',
+      storageBucket: 'cits3200-app-conversation.appspot.com',
+      messagingSenderId: '497251497079'
+    };
+    firebase.initializeApp(config);
+
     // Set up the routing states
     // The state is placed in the <ion-nav-view> in the index.html
     $stateProvider
       .state('auth', {
         url: '/login', //
         templateUrl: 'main/templates/auth.html', //login.html
-        controller: 'AuthController',  //LoginCtrl
+        controller: 'AuthController', //LoginCtrl
         controllerAs: 'vm',
       })
       .state('menu', {

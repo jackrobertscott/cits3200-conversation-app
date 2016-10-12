@@ -6,8 +6,7 @@
       <div ng-repeat="listItem in vm.listItems">
         <ion-item class="item-stable"
                     ng-click="vm.toggleListItem(listItem)"
-                    ng-class="{active: vm.isListItemShown(listItem)}"
-                    ng-style="vm.isItemComplete(listItem) ? {'background-color':'#4a87ee'} : {'background-color':'#D24D57'} ">
+                    ng-class="{active: vm.isListItemShown(listItem), complete: vm.isItemComplete(listItem)}">
                     <!-- <i class="icon" ng-class="vm.isGroupShown(listItem) ? 'ion-minus' : 'ion-plus'"></i>-->
         {{listItem.stepName}}
         </ion-item>
