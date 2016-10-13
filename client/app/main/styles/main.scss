@@ -36,11 +36,13 @@ ion-content {
   background-color: lighten(green, 65%);
 }
 
-.list .item-accordion {
+.item-accordian {
   line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
   transition: 0.9s all linear;
+  margin: 1px -16px 0;
+  border: none;
 }
 
 .list .item-accordion.ng-hide {
@@ -61,7 +63,7 @@ ion-content {
   border-bottom: 2px dashed darken(yellow, 5%);
 }
 
-.css-form input.ng-invalid.ng-touched {
+.css-form input.ng-empty.ng-touched {
   border-color: darken(#FA787E, 30%);
 }
 
