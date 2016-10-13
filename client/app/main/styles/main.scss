@@ -32,16 +32,6 @@ ion-content {
   padding: 30px 0 10px;
 }
 
-.row.sharp {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.col.sharp {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .list .item-stable.complete {
   background-color: lighten(green, 65%);
 }
@@ -113,6 +103,7 @@ $line-thickness: 5px;
   bottom: 0;
   position: absolute;
   left: 50%;
+  -webkit-animation-play-state: paused;
 }
 
 .line-1 { border-color: #C089FF #C089FF transparent transparent; }

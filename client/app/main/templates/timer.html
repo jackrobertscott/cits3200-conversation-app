@@ -29,27 +29,24 @@
       <div class="dot"></div>
     </div>
 
-    <div class="row sharp">
-      <div class="col sharp">
-        <button class="button button-block button-calm" ng-click="vm.beginCountdown()">
-          <i class="icon ion-play"></i>
+    <div class="row">
+      <div class="col">
+        <button class="button button-block button-calm" ng-click="vm.active ? vm.stopCountdown() : vm.beginCountdown()">
+          <i class="icon" ng-class="{'ion-play': !vm.active, 'ion-pause': vm.active}"></i>
         </button>
       </div>
-      <div class="col padding-horizontal">
-        <button class="button button-block button-calm" ng-click="vm.stopCountdown()">
-          <i class="icon ion-pause"></i>
-        </button>
-      </div>
-      <div class="col sharp">
+      <div class="col">
         <button class="button button-block button-calm" ng-click="vm.resetCountdown()">
           <i class="icon ion-refresh"></i>
         </button>
       </div>
     </div>
 
-    <a class="button button-block button-stable" ui-sref="menu">
-      Back to Menu
-    </a>
+    <div class="padding-horizontal">
+      <a class="button button-block button-stable" ui-sref="menu">
+        Back to Menu
+      </a>
+    </div>
 
     <!-- Content: End -->
   </ion-content>
