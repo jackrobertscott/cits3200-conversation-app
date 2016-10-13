@@ -6,7 +6,7 @@
     .controller('AuthController', AuthController);
 
   /* @ngInject */
-  function AuthController(authService, $state, $ionicPopup, $log) {
+  function AuthController(authService, $state, $ionicPopup, $log, $ionicLoading) {
     var vm = this;
 
     vm.errors = [];
@@ -32,9 +32,12 @@
           template: 'Please fill in all inputs.'
         });
       }
+      $ionicLoading.show();
       authService.$signInWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
+        $ionicLoading.hide();
         $state.go('menu');
       }).catch(function(error) {
+        $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Login Failed',
           template: 'Please check your credentials.'
@@ -56,9 +59,12 @@
           template: 'Please fill in all inputs.'
         });
       }
+      $ionicLoading.show();
       authService.$createUserWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
+        $ionicLoading.hide();
         $state.go('menu');
       }).catch(function(error) {
+        $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Sign Up Failed',
           template: 'Please check your inputs are correct or try again later.'

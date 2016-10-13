@@ -6,7 +6,7 @@
     .controller('VentingController', VentingController);
 
   /* @ngInject */
-  function VentingController(ventingService) {
+  function VentingController(ventingService, currentAuth, $ionicLoading, $ionicPopup, $state) {
     var vm = this;
 
     vm.errors = [];
@@ -23,13 +23,28 @@
     }
 
     function create() {
-      if (vm.text.trim()) {
-        vm.ventings.$add({
-          text: vm.text,
-          createdAt: Date.now(),
+      if (!vm.text.trim()) {
+        return $ionicPopup.alert({
+          title: 'Inputs Missing',
+          template: 'Please fill in all inputs.'
         });
-        vm.text = '';
       }
+      $ionicLoading.show();
+      vm.ventings.$add({
+        text: vm.text,
+        createdAt: Date.now(),
+        userId: currentAuth.uid,
+      }).then(function() {
+        $ionicLoading.hide();
+        vm.text = '';
+        $state.go('timer');
+      }).catch(function() {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Submission Failed',
+          template: 'Sorry for the inconvinience.'
+        });
+      });
     }
   }
 })();
