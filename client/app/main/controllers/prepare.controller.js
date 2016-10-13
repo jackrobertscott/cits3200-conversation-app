@@ -6,7 +6,7 @@
     .controller('PrepareController', PrepareController);
 
   /* @ngInject */
-  function PrepareController(prepareService) {
+  function PrepareController(prepareService, currentAuth, $ionicLoading, $ionicPopup, $state) {
     var vm = this;
 
     vm.errors = [];
@@ -72,13 +72,42 @@
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
-      vm.prepares = prepareService.get();
+      vm.prepares = prepareService.getByUserId(currentAuth.uid);
     }
 
     function submit() {
-      if (vm.listItems[0].contents.input1.trim()) { // validation
-        vm.prepares.$add(vm.listItems);
+      if (!vm.listItems[0].contents.input1 || !vm.listItems[0].contents.input1.trim()) { // validation
+        return $ionicPopup.alert({
+          title: 'Inputs Missing',
+          template: 'Please fill in inputs.'
+        });
       }
+      $ionicLoading.show();
+      var data = vm.listItems.reduce(function(prev, next) {
+        prev.responses.push({
+          question: next.contents.input1label,
+          answer: next.contents.input1,
+        });
+        prev.responses.push({
+          question: next.contents.input2label,
+          answer: next.contents.input2,
+        });
+        return prev;
+      }, {
+        responses: [],
+        userId: currentAuth.uid,
+        createdAt: Date.now(),
+      });
+      vm.prepares.$add(data).then(function() {
+        $ionicLoading.hide();
+        $state.go('reframe');
+      }).catch(function() {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Submission Failed',
+          template: 'Sorry for the inconvinience.'
+        });
+      });
     }
 
     function toggleListItem(listItem) {

@@ -12,6 +12,7 @@
     var service = {
       get: get,
       getById: getById,
+      getByUserId: getByUserId,
     };
 
     return service;
@@ -22,6 +23,10 @@
 
     function getById(id) {
       return $firebaseObject(ref.child(id));
+    }
+
+    function getByUserId(id) {
+      return $firebaseArray(ref.orderByChild('userId').equalTo(id));
     }
   }
 })();
