@@ -18,11 +18,11 @@
     $urlRouterProvider.otherwise('/login');
 
     var config = {
-      apiKey: 'AIzaSyD4avcWISHGd6z8ti1JL7XQOLku6fpCQWU',
-      authDomain: 'cits3200-app-conversation.firebaseapp.com',
-      databaseURL: 'https://cits3200-app-conversation.firebaseio.com',
-      storageBucket: 'cits3200-app-conversation.appspot.com',
-      messagingSenderId: '497251497079'
+      apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
+      authDomain: 'cits3200-conversations.firebaseapp.com',
+      databaseURL: 'https://cits3200-conversations.firebaseio.com',
+      storageBucket: '',
+      messagingSenderId: '992134189372'
     };
     firebase.initializeApp(config);
 
