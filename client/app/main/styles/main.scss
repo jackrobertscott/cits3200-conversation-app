@@ -22,31 +22,27 @@ ion-content {
   background-color: #f9fcff;
 }
 
+.button-stable {
+  border-color: darken($stable, 15%) !important;
+}
+
 .countdown {
   text-align: center;
   font-size: 100px;
-  padding: 50px 0;
-}
-
-.row.sharp {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.col.sharp {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 30px 0 10px;
 }
 
 .list .item-stable.complete {
   background-color: lighten(green, 65%);
 }
 
-.list .item-accordion {
+.item-accordian {
   line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
   transition: 0.9s all linear;
+  margin: 1px -16px 0;
+  border: none;
 }
 
 .list .item-accordion.ng-hide {
@@ -67,6 +63,84 @@ ion-content {
   border-bottom: 2px dashed darken(yellow, 5%);
 }
 
-.css-form input.ng-invalid.ng-touched {
+.css-form input.ng-empty.ng-touched {
   border-color: darken(#FA787E, 30%);
+}
+
+.loading-slide {
+  height: 1px;
+  width: 0;
+  margin: 10px 0;
+  background-color: $balanced;
+}
+
+// RAINBOW
+
+$size: 90%;
+$lines: 19;
+$line-thickness: 5px;
+
+.rainbow {
+  height: 180px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.rainbow .dot {
+  background-color: #D792FF;
+  border-radius: 100%;
+  bottom: 0;
+  height: $line-thickness * 2;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: $line-thickness * 2;
+}
+
+.rainbow .line {
+  border-radius: 100%;
+  border-style: solid;
+  border-width: $line-thickness;
+  bottom: 0;
+  position: absolute;
+  left: 50%;
+  -webkit-animation-play-state: paused;
+}
+
+.line-1 { border-color: #C089FF #C089FF transparent transparent; }
+.line-2 { border-color: #9684E8 #9684E8 transparent transparent; }
+.line-3 { border-color: #9DA7FF #9DA7FF transparent transparent; }
+.line-4 { border-color: #85A4FF #85A4FF transparent transparent; }
+.line-5 { border-color: #89D5FF #89D5FF transparent transparent; }
+.line-6 { border-color: #8EE6FF #8EE6FF transparent transparent; }
+.line-7 { border-color: #7EFFE9 #7EFFE9 transparent transparent; }
+.line-8 { border-color: #8EE6FF #8EE6FF transparent transparent; }
+.line-9 { border-color: #89D5FF #89D5FF transparent transparent; }
+.line-10 { border-color: #7EA5E8 #7EA5E8 transparent transparent; }
+.line-11 { border-color: #9DA7FF #9DA7FF transparent transparent; }
+.line-12 { border-color: #9684E8 #9684E8 transparent transparent; }
+.line-13 { border-color: #B184E8 #B184E8 transparent transparent; }
+.line-14 { border-color: #D792FF #D792FF transparent transparent; }
+.line-15 { border-color: #B184E8 #B184E8 transparent transparent; }
+.line-16 { border-color: #9684E8 #9684E8 transparent transparent; }
+.line-17 { border-color: #9DA7FF #9DA7FF transparent transparent; }
+.line-18 { border-color: #7EA5E8 #7EA5E8 transparent transparent; }
+.line-19 { border-color: #89D5FF #89D5FF transparent transparent; }
+
+@for $i from 1 through $lines {
+  $radius: ($i / $lines) * $size;
+  $delay: $i * -3s;
+
+  .line-#{$i} {
+    animation: rotate 60s ease-in-out $delay infinite;
+    padding-top: $radius;
+    width: $radius * 1.05;
+  }
+}
+
+@keyframes rotate {
+  0% { transform: translate(-50%, 50%) rotate(-45deg); }
+  50% { transform: translate(-50%, 50%) rotate(-225deg); }
+  100% { transform: translate(-50%, 50%) rotate(-45deg); }
 }

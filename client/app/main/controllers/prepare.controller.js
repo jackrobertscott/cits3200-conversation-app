@@ -6,9 +6,15 @@
     .controller('PrepareController', PrepareController);
 
   /* @ngInject */
-  function PrepareController(prepareService) {
+  function PrepareController(prepareService, currentAuth, $ionicLoading, $ionicPopup, $state) {
     var vm = this;
+
     vm.errors = [];
+    vm.prepares;
+    vm.submit = submit;
+    vm.toggleListItem = toggleListItem;
+    vm.isListItemShown = isListItemShown;
+    vm.isItemComplete = isItemComplete;
     vm.listItems = [{
       stepName: 'Consider Each Others Wants',
       contents: {
@@ -66,9 +72,45 @@
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
+      vm.prepares = prepareService.getByUserId(currentAuth.uid);
     }
 
-    vm.toggleListItem = function(listItem) {
+    function submit() {
+      if (!vm.listItems[0].contents.input1 || !vm.listItems[0].contents.input1.trim()) { // validation
+        return $ionicPopup.alert({
+          title: 'Inputs Missing',
+          template: 'Please fill in inputs.'
+        });
+      }
+      $ionicLoading.show();
+      var data = vm.listItems.reduce(function(prev, next) {
+        prev.responses.push({
+          question: next.contents.input1label,
+          answer: next.contents.input1,
+        });
+        prev.responses.push({
+          question: next.contents.input2label,
+          answer: next.contents.input2,
+        });
+        return prev;
+      }, {
+        responses: [],
+        userId: currentAuth.uid,
+        createdAt: Date.now(),
+      });
+      vm.prepares.$add(data).then(function() {
+        $ionicLoading.hide();
+        $state.go('reframe');
+      }).catch(function() {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Submission Failed',
+          template: 'Sorry for the inconvinience.'
+        });
+      });
+    }
+
+    function toggleListItem(listItem) {
       if (listItem.contents.input1 !== null && listItem.contents.input1 !== '' &&
         listItem.contents.input2 !== null && listItem.contents.input2 !== '') {
         listItem.contents.completed = true;
@@ -79,14 +121,14 @@
       } else {
         this.shownListItem = listItem;
       }
-    };
+    }
 
-    vm.isListItemShown = function(listItem) {
+    function isListItemShown(listItem) {
       return this.shownListItem === listItem;
-    };
+    }
 
-    vm.isItemComplete = function(listItem) {
+    function isItemComplete(listItem) {
       return listItem.contents.completed;
-    };
+    }
   }
 })();

@@ -18,10 +18,12 @@
           <form name="form" class="css-form" novalidate>
             <ion-item class ='item-text-wrap'>{{listItem.contents.input1label}}</ion-item>
             <label class="item item-input">
-              <input type="text" ng-model=listItem.contents.input1 required></label>
+              <input type="text" ng-model=listItem.contents.input1 placeholder="..." required>
+            </label>
             <ion-item class ='item-text-wrap'>{{listItem.contents.input2label}}</ion-item>
             <label class="item item-input">
-              <input type="text"ng-model=listItem.contents.input2 required></label>
+              <input type="text"ng-model=listItem.contents.input2 placeholder="..." required>
+            </label>
             <ion-item class ='item-text-wrap'>{{listItem.contents.explanation}}</ion-item>
           </label>
         </ion-item>
@@ -29,12 +31,12 @@
       </div>
     </ion-list>
 
-    <a class="button button-block button-positive" ui-sref="menu">
-      Back to Menu
+    <a class="button button-block button-positive" ng-click="vm.submit()">
+      Submit
     </a>
 
-    <a class="button button-block button-positive" ui-sref="reflection">
-      Submit
+    <a class="button button-block button-stable" ui-sref="menu">
+      Back to Menu
     </a>
 
     <!-- Content: End -->

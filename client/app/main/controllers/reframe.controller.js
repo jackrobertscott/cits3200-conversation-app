@@ -6,13 +6,15 @@
     .controller('ReframeController', ReframeController);
 
   /* @ngInject */
-  function ReframeController($interval/*, reframeService*/) {
+  function ReframeController($interval, reframeService, currentAuth, $ionicLoading, $ionicPopup, $state) {
     var vm = this;
     var MAX_TIPS = 3;
     var TIP_INDEX = 0;
     var SUBTIP_INDEX = 0;
 
     vm.errors = [];
+    vm.reframes;
+    vm.text = '';
     vm.maxTips = MAX_TIPS;
     vm.preparationTips = [{
       Tip: 'Remember to communicate your interests and acknowledge theirs',
@@ -31,22 +33,35 @@
       Tip: this.preparationTips[TIP_INDEX].Tip,
       SubTip: this.preparationTips[TIP_INDEX].SubTip1
     };
+    vm.submit = submit;
 
     activate();
 
     function activate() {
+      vm.reframes = reframeService.getByUserId(currentAuth.uid);
       /*
-      * Setting the interval for when the tips change
-      */
-      $interval(changeTip, 10000);
+       * Setting the interval for when the tips change
+       */
+      function slideAlong() {
+        $('.loading-slide').animate({
+          width: '100%',
+        }, 10000, function() {
+          $(this).css('width', '0');
+        });
+      }
+      slideAlong();
+      $interval(function() {
+        changeTip();
+        slideAlong();
+      }, 10000);
       $interval(changeSubTip, 5000);
     }
 
     /*
-    * Function for changing which tip is changing.
-    * Goes through the array of objects preparationTips one at a time
-    * If it gets to the end of the array returns to the start
-    */
+     * Function for changing which tip is changing.
+     * Goes through the array of objects preparationTips one at a time
+     * If it gets to the end of the array returns to the start
+     */
 
     function changeTip() {
       if (TIP_INDEX + 1 < MAX_TIPS) {
@@ -58,9 +73,9 @@
     }
 
     /*
-    * Function for changing the sub tip from two possible.
-    * Checks if it is in the first or second subtip then changes to the other
-    */
+     * Function for changing the sub tip from two possible.
+     * Checks if it is in the first or second subtip then changes to the other
+     */
     function changeSubTip() {
       if (SUBTIP_INDEX === 0) {
         SUBTIP_INDEX = 1;
@@ -69,6 +84,31 @@
         SUBTIP_INDEX = 0;
         vm.currentTip.SubTip = vm.preparationTips[TIP_INDEX].SubTip1;
       }
+    }
+
+    function submit() {
+      if (!vm.text.trim()) {
+        return $ionicPopup.alert({
+          title: 'Inputs Missing',
+          template: 'Please fill in all inputs.'
+        });
+      }
+      $ionicLoading.show();
+      vm.reframes.$add({
+        text: vm.text,
+        createdAt: Date.now(),
+        userId: currentAuth.uid,
+      }).then(function() {
+        $ionicLoading.hide();
+        vm.text = '';
+        $state.go('menu');
+      }).catch(function() {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Submission Failed',
+          template: 'Sorry for the inconvinience.'
+        });
+      });
     }
   }
 })();
