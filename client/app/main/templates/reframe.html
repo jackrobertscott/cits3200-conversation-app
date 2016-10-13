@@ -10,9 +10,13 @@
 
     <div class="list list-inset">
       <label class="item item-input">
-        <textarea placeholder="Message..." rows="10"></textarea>
+        <textarea placeholder="Message..." rows="10" ng-model="vm.text"></textarea>
       </label>
     </div>
+
+    <a class="button button-block button-positive" ng-click="vm.submit()">
+      Submit
+    </a>
 
     <a class="button button-block button-stable" ui-sref="menu">
       Back to Menu
