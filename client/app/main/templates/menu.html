@@ -1,22 +1,58 @@
 <ion-view view-title="Menu">
-  <ion-content class="padding">
+  <ion-content>
     <!-- Content: Start -->
 
-    <a class="button button-block button-calm" ui-sref="venting">
-      Vent Your Feels
-    </a>
-    <a class="button button-block button-calm" ui-sref="timer">
-      Take A Chill Pill
-    </a>
-    <a class="button button-block button-calm" ui-sref="prepare">
-      Break It Down
-    </a>
-    <a class="button button-block button-calm" ui-sref="reframe">
-      Say It Better
-    </a>
-    <a class="button button-block button-stable" ng-click="vm.logOut()">
-      Logout
-    </a>
+    <div class="row">
+      <div class="col">
+        <a class="button button-block button-calm" ui-sref="venting">
+          <span class="icon ion-chatbubbles"></span>
+          <br>
+          Vent Feelings
+        </a>
+      </div>
+      <div class="col">
+        <a class="button button-block button-calm" ui-sref="timer">
+          <span class="icon ion-clock"></span>
+          <br>
+          Cool Down
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="button button-block button-calm" ui-sref="prepare">
+          <span class="icon ion-clipboard"></span>
+          <br>
+          Break It Down
+        </a>
+      </div>
+      <div class="col">
+        <a class="button button-block button-calm" ui-sref="reframe">
+          <span class="icon ion-thumbsup"></span>
+          <br>
+          Say It Better
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="button button-block button-positive" ui-sref="reflection">
+          Reflect
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <a class="button button-block button-stable" ng-click="vm.logOut()">
+          Logout
+        </a>
+      </div>
+      <div class="col">
+        <a class="button button-block button-stable">
+          About
+        </a>
+      </div>
+    </div>
 
     <!-- Content: End -->
   </ion-content>
