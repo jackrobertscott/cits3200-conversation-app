@@ -37,7 +37,7 @@
       }).then(function() {
         $ionicLoading.hide();
         vm.text = '';
-        $state.go('timer');
+        $state.go('timer-info');
       }).catch(function() {
         $ionicLoading.hide();
         $ionicPopup.alert({

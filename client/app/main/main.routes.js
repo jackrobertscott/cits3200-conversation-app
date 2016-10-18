@@ -47,6 +47,13 @@
         controllerAs: 'vm',
         resolve: requireAuthenication(),
       })
+      .state('timer-info', {
+        url: '/timer-info',
+        templateUrl: 'main/templates/timer-info.html',
+        controller: 'TimerController',
+        controllerAs: 'vm',
+        resolve: requireAuthenication(),
+      })
       .state('prepare', {
         url: '/prepare',
         templateUrl: 'main/templates/prepare.html',
