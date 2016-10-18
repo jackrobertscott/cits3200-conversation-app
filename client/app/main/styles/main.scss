@@ -58,18 +58,20 @@ ion-content {
   display: block !important;
 }
 
-.css-form input {
-  margin-left: -20px;
-  padding-left: 20px;
+.css-form input,
+.css-form textarea {
+  margin-left: -7px;
+  &.ng-invalid.ng-pristine {
+    border-bottom: 2px dashed darken(yellow, 5%);
+  }
+  &.ng-empty.ng-touched {
+    border-color: darken(#FA787E, 30%);
+  }
 }
 
-.css-form input.ng-invalid.ng-pristine {
-  border-bottom: 2px dashed darken(yellow, 5%);
-}
+.css-form input
 
-.css-form input.ng-empty.ng-touched {
-  border-color: darken(#FA787E, 30%);
-}
+.css-form input
 
 .loading-slide {
   height: 1px;
