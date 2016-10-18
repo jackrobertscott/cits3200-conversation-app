@@ -6,11 +6,13 @@
     .controller('ReflectionController', ReflectionController);
 
   /* @ngInject */
-  function ReflectionController(reflectionService) {
+  function ReflectionController(prepareService, reframeService, ventingService, currentAuth) {
     var vm = this;
 
     vm.errors = [];
-    vm.exampleCallToDB = exampleCallToDB;
+    vm.getVentings = getVentings;
+    vm.getReframes = getReframes;
+    vm.getPrepares = getPrepares;
 
     activate();
 
@@ -19,14 +21,16 @@
       // can usually ignore this function
     }
 
-    function exampleCallToDB() {
-      reflectionService.getMeData() // this is a Promise (read about it)
-        .then(function(data) {
-          vm.example = data;
-        })
-        .catch(function(error) {
-          vm.errors.push(error);
-        });
+    function getVentings() {
+      return ventingService.getByUserId(currentAuth.uid);
+    }
+
+    function getReframes() {
+      return reframeService.getByUserId(currentAuth.uid);
+    }
+
+    function getPrepares() {
+      return prepareService.getByUserId(currentAuth.uid);
     }
   }
 })();

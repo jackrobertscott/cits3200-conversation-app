@@ -1,23 +1,11 @@
-<ion-view view-title="Reflection">
-  <ion-content class="padding">
-    <!-- Content: Start -->
-
-    <ion-list>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-      <ion-item class="item item-divider">
-        This is your authentication template!
-      </ion-item>
-    </ion-list>
-
-    <a class="button button-block button-stable" ui-sref="menu">
-      Back to Menu
-    </a>
-
-    <!-- Content: End -->
-  </ion-content>
-</ion-view>
+<ion-tabs class="tabs-positive tabs-icon-top">
+  <ion-tab title="Ventings" ui-sref="reflection.venting" icon="ion-chatbubbles">
+    <ion-nav-view name="venting"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="Prepares" ui-sref="reflection.prepare" icon="ion-clipboard">
+    <ion-nav-view name="prepare"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="Reframes" ui-sref="reflection.reframe" icon="ion-thumbsup">
+    <ion-nav-view name="reframe"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

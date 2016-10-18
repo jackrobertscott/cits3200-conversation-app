@@ -26,6 +26,10 @@ ion-content {
   border-color: darken($stable, 15%) !important;
 }
 
+.row .button {
+  margin: 0;
+}
+
 .countdown {
   text-align: center;
   font-size: 100px;

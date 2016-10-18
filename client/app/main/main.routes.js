@@ -54,6 +54,13 @@
         controllerAs: 'vm',
         resolve: requireAuthenication(),
       })
+      .state('reframe', {
+        url: '/reframe',
+        templateUrl: 'main/templates/reframe.html',
+        controller: 'ReframeController',
+        controllerAs: 'vm',
+        resolve: requireAuthenication(),
+      })
       .state('reflection', {
         url: '/reflection',
         templateUrl: 'main/templates/reflection.html',
@@ -61,12 +68,29 @@
         controllerAs: 'vm',
         resolve: requireAuthenication(),
       })
-      .state('reframe', {
+      .state('reflection.prepare', {
+        url: '/prepare',
+        views: {
+          'prepare': {
+            templateUrl: 'main/templates/reflection.prepare.html',
+          },
+        },
+      })
+      .state('reflection.venting', {
+        url: '/venting',
+        views: {
+          'venting': {
+            templateUrl: 'main/templates/reflection.venting.html',
+          },
+        },
+      })
+      .state('reflection.reframe', {
         url: '/reframe',
-        templateUrl: 'main/templates/reframe.html',
-        controller: 'ReframeController',
-        controllerAs: 'vm',
-        resolve: requireAuthenication(),
+        views: {
+          'reframe': {
+            templateUrl: 'main/templates/reflection.reframe.html',
+          },
+        },
       });
   }
 
