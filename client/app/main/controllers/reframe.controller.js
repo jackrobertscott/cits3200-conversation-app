@@ -101,7 +101,7 @@
         }).then(function() {
           $ionicLoading.hide();
           vm.text = '';
-          $state.go('menu');
+          $state.go('reflection.reframe');
         }).catch(function() {
           $ionicLoading.hide();
           $ionicPopup.alert({

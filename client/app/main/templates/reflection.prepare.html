@@ -2,13 +2,20 @@
   <ion-content class="padding-horizontal">
 
   <div class="list card" ng-repeat="prepare in vm.prepares">
-    <div class="item" ng-repeat="response in prepare.responses">
-      <p>
-        {{response.question}}
+    <div class="item">
+      <p>{{prepare.createdAt | date:'medium'}}</p>
+    </div>
+    <div class="item">
+      <a ng-click="prepare.show = true" ng-if="!prepare.show">Show</a>
+      <a ng-click="prepare.show = false" ng-if="prepare.show">Hide</a>
+    </div>
+    <div class="item" ng-if="prepare.show">
+      <div ng-repeat="response in prepare.responses">
+        <h2>{{response.question}}</h2>
         <br>
+        <p>{{response.answer || "..."}}</p>
         <br>
-        {{response.answer || "..."}}
-      </p>
+      </div>
     </div>
   </div>
 
