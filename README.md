@@ -1,4 +1,4 @@
-# CITS3200 Conversation App
+# CITS3200 Conversation App [![Build Status](https://travis-ci.org/jackrobertscott/cits3200-conversation-app.svg?branch=stage)](https://travis-ci.org/jackrobertscott/cits3200-conversation-app)
 
 ![Team](https://raw.githubusercontent.com/jackrobertscott/cits3200-conversation-app/stage/TEAM.jpg)
 
