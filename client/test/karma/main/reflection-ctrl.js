@@ -1,10 +1,10 @@
 'use strict';
 
-describe('authentication controller', function() {
+describe('Reflection Controller', function() {
 
   beforeEach(angular.mock.module('main'));
 
-  var AuthController;
+  var ReflectionController;
   var $controller;
   var $state;
 
@@ -14,24 +14,15 @@ describe('authentication controller', function() {
   }));
 
   beforeEach(function() {
-    AuthController = $controller('AuthController', { $state: $state });
+    ReflectionController = $controller('ReflectionController', { $state: $state });
   });
 
     /*-----SPECS-------*/
   it('should exist', function() {
-    expect(AuthController).toBeDefined();
+    expect(ReflectionController).toBeDefined();
   });
 
   // it('should have login function go to menu', function() {
   //   expect($state).toBeDefined('menu');
   // });
-
-  it('should have login function', function() {
-    expect(AuthController.login).toBeDefined();
-  });
-
-  it('should not have poopie function', function() {
-    expect(AuthController.poopie).not.toBeDefined();
-  });
-
 });
