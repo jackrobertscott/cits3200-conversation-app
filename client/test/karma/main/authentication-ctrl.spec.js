@@ -1,20 +1,31 @@
 'use strict';
 
-describe('module: main, controller: AuthenticationCtrl', function () {
+describe('conversations module', function() {
 
-  // load the controller's module
-  beforeEach(module('main'));
-  // load all the templates to prevent unexpected $http requests from ui-router
-  beforeEach(module('ngHtml2Js'));
+  beforeEach(angular.mock.module('main'));
 
-  // instantiate controller
-  var AuthenticationCtrl;
-  beforeEach(inject(function ($controller) {
-    AuthenticationCtrl = $controller('AuthenticationCtrl');
+  var $controller;
+
+  beforeEach(angular.mock.inject(function(_$controller_) {
+    $controller = _$controller_;
   }));
 
-  it('should do something', function () {
-    expect(!!AuthenticationCtrl).toBe(true);
+  describe('authentication controller', function() {
+
+    var AuthController;
+
+    beforeEach(function() {
+      AuthController = $controller('AuthController');
+    });
+
+      /*-----SPECS-------*/
+    it('should exist', function() {
+      expect(AuthController).toBeDefined();
+    });
+
+    it('should have login function', function() {
+      expect(AuthController.login).toBeDefined();
+    });
   });
 
 });
