@@ -26,6 +26,10 @@
         controller: 'AuthController',
         controllerAs: 'vm',
       })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'main/templates/about.html',
+      })
       .state('menu', {
         url: '/menu',
         templateUrl: 'main/templates/menu.html',

@@ -1,0 +1,27 @@
+<ion-view view-title="Getting Ready">
+  <ion-content class="padding" ng-init="easter = 0">
+    <!-- Content: Start -->
+
+    <h4>Who is this for?</h4>
+    <p>This project was built to help people of all ages handle difficult conversations better.</p>
+    <p>It was built under the guidance of Associate Professor Jill Howieson Director of Higher Degrees.</p>
+    <p>This was a project conducted for the UWA unit CITS3200 by Group E - 2016 Semester 2.</p>
+    <h4 ng-click="easter = easter + 1">Proudly developed by:</h4>
+    <img ng-if="easter >= 5" src="https://raw.githubusercontent.com/jackrobertscott/cits3200-conversation-app/stage/TEAM.jpg" style="width: 100%;">
+    <ul>
+      <li>Jack Scott</li>
+      <li>Daniel Cocks</li>
+      <li>Ancil Thomas</li>
+      <li>Simone Jennings</li>
+      <li>Alasdair Penman</li>
+      <li>Simon de Sancha</li>
+    </ul>
+    <br>
+
+    <a class="button button-block button-stable" ui-sref="menu">
+      Back to Menu
+    </a>
+
+    <!-- Content: End -->
+  </ion-content>
+</ion-view>
