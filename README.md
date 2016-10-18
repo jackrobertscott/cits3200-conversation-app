@@ -1,6 +1,6 @@
-# Conversation App
+# CITS3200 Conversation App
 
-CITS3200
+![Team](https://raw.githubusercontent.com/jackrobertscott/cits3200-conversation-app/stage/TEAM.jpg)
 
 ### Front-end (Client) Development
 
@@ -21,6 +21,6 @@ The back-end is an API so does NOT have any *view* files (like you might see on 
 
 There are the following folders:
 * `models`: These are the schema for the database objects.
-* `controllers`: These recieve api calls, manipulate the models and return data.
+* `controllers`: These receive api calls, manipulate the models and return data.
 
-To run the server, you will need to have MongoDB installed and running. Once it is installed, you can run MongoDB with `mongod` in your command line. Then you can start the server, in a seperate terminal window, with `npm start`.
+To run the server, you will need to have MongoDB installed and running. Once it is installed, you can run MongoDB with `mongod` in your command line. Then you can start the server, in a separate terminal window, with `npm start`.

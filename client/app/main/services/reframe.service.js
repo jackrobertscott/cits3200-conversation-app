@@ -3,11 +3,11 @@
 (function() {
   angular
     .module('main')
-    .factory('ventingService', ventingService);
+    .factory('reframeService', reframeService);
 
   /* @ngInject */
-  function ventingService($firebaseObject, $firebaseArray) {
-    var ref = firebase.database().ref().child('venting');
+  function reframeService($firebaseObject, $firebaseArray) {
+    var ref = firebase.database().ref().child('reframe');
 
     var service = {
       get: get,

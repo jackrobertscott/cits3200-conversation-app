@@ -6,15 +6,22 @@
     .factory('reflectionService', reflectionService);
 
   /* @ngInject */
-  function reflectionService() {
+  function reflectionService($firebaseObject, $firebaseArray) {
+    var ref = firebase.database().ref().child('reflection');
+
     var service = {
-      example: example
+      get: get,
+      getById: getById,
     };
 
     return service;
 
-    function example() {
-      // code...
+    function get() {
+      return $firebaseArray(ref);
+    }
+
+    function getById(id) {
+      return $firebaseObject(ref.child(id));
     }
   }
 })();

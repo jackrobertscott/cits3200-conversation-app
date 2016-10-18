@@ -6,15 +6,22 @@
     .factory('timerService', timerService);
 
   /* @ngInject */
-  function timerService() {
+  function timerService($firebaseObject, $firebaseArray) {
+    var ref = firebase.database().ref().child('timer');
+
     var service = {
-      example: example
+      get: get,
+      getById: getById,
     };
 
     return service;
 
-    function example() {
-      // code...
+    function get() {
+      return $firebaseArray(ref);
+    }
+
+    function getById(id) {
+      return $firebaseObject(ref.child(id));
     }
   }
 })();

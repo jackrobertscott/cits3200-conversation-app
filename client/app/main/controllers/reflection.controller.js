@@ -8,6 +8,7 @@
   /* @ngInject */
   function ReflectionController(reflectionService) {
     var vm = this;
+
     vm.errors = [];
     vm.exampleCallToDB = exampleCallToDB;
 

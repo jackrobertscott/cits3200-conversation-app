@@ -1,6 +1,12 @@
-<ion-view view-title="Venting">
+<ion-view view-title="Reframe">
   <ion-content class="padding">
     <!-- Content: Start -->
+
+    <ul class="tip">
+      <h3>{{ vm.currentTip.Tip }}</h3>
+      <li class="loading-slide"></li>
+      <li>{{ vm.currentTip.SubTip }}</li>
+    </ul>
 
     <div class="list list-inset">
       <label class="item item-input">
@@ -8,7 +14,7 @@
       </label>
     </div>
 
-    <a class="button button-block button-positive" ng-click="vm.create()">
+    <a class="button button-block button-positive" ng-click="vm.submit()">
       Submit
     </a>
 

@@ -6,6 +6,7 @@
 # npm & bower
 /node_modules/
 /app/bower_components/
+*.log
 
 # custom gulp settings
 /gulp/.gulp_settings.json
