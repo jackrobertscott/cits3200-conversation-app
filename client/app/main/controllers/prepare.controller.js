@@ -82,30 +82,31 @@
           template: 'Please fill in inputs.'
         });
       }
-      $ionicLoading.show();
-      var data = vm.listItems.reduce(function(prev, next) {
-        prev.responses.push({
-          question: next.contents.input1label,
-          answer: next.contents.input1,
+      $ionicLoading.show().then(function() {
+        var data = vm.listItems.reduce(function(prev, next) {
+          prev.responses.push({
+            question: next.contents.input1label,
+            answer: next.contents.input1,
+          });
+          prev.responses.push({
+            question: next.contents.input2label,
+            answer: next.contents.input2,
+          });
+          return prev;
+        }, {
+          responses: [],
+          userId: currentAuth.uid,
+          createdAt: Date.now(),
         });
-        prev.responses.push({
-          question: next.contents.input2label,
-          answer: next.contents.input2,
-        });
-        return prev;
-      }, {
-        responses: [],
-        userId: currentAuth.uid,
-        createdAt: Date.now(),
-      });
-      vm.prepares.$add(data).then(function() {
-        $ionicLoading.hide();
-        $state.go('reframe');
-      }).catch(function() {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Submission Failed',
-          template: 'Sorry for the inconvinience.'
+        vm.prepares.$add(data).then(function() {
+          $ionicLoading.hide();
+          $state.go('reframe');
+        }).catch(function() {
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Submission Failed',
+            template: 'Sorry for the inconvinience.'
+          });
         });
       });
     }

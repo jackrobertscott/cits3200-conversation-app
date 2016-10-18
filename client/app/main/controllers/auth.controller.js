@@ -31,19 +31,22 @@
           title: 'Inputs Missing',
           template: 'Please fill in all inputs.'
         });
-      }
-      $ionicLoading.show();
-      authService.$signInWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
-        $ionicLoading.hide();
-        $state.go('menu');
-      }).catch(function(error) {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Login Failed',
-          template: 'Please check your credentials.'
+      } else {
+        $ionicLoading.show().then(function() {
+          authService.$signInWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
+            $ionicLoading.hide();
+            $state.go('menu');
+          }).catch(function(error) {
+            $ionicLoading.hide().then(function() {
+              $ionicPopup.alert({
+                title: 'Login Failed',
+                template: error.message || 'Please check your credentials.'
+              });
+            });
+            $log.error('Authentication failed:', error);
+          });
         });
-        $log.error('Authentication failed:', error);
-      });
+      }
     }
 
     function logOut() {
@@ -58,19 +61,22 @@
           title: 'Inputs Missing',
           template: 'Please fill in all inputs.'
         });
-      }
-      $ionicLoading.show();
-      authService.$createUserWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
-        $ionicLoading.hide();
-        $state.go('menu');
-      }).catch(function(error) {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Sign Up Failed',
-          template: 'Please check your inputs are correct or try again later.'
+      } else {
+        $ionicLoading.show().then(function() {
+          authService.$createUserWithEmailAndPassword(vm.credentials.email, vm.credentials.password).then(function() {
+            $ionicLoading.hide();
+            $state.go('menu');
+          }).catch(function(error) {
+            $log.error(error);
+            $ionicLoading.hide().then(function() {
+              $ionicPopup.alert({
+                title: 'Sign Up Failed',
+                template: error.message || 'Please check your inputs are correct or try again later.'
+              });
+            });
+          });
         });
-        $log.error(error);
-      });
+      }
     }
   }
 })();

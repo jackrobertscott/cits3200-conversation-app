@@ -29,20 +29,21 @@
           template: 'Please fill in all inputs.'
         });
       }
-      $ionicLoading.show();
-      vm.ventings.$add({
-        text: vm.text,
-        createdAt: Date.now(),
-        userId: currentAuth.uid,
-      }).then(function() {
-        $ionicLoading.hide();
-        vm.text = '';
-        $state.go('timer-info');
-      }).catch(function() {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Submission Failed',
-          template: 'Sorry for the inconvinience.'
+      $ionicLoading.show().then(function() {
+        vm.ventings.$add({
+          text: vm.text,
+          createdAt: Date.now(),
+          userId: currentAuth.uid,
+        }).then(function() {
+          $ionicLoading.hide();
+          vm.text = '';
+          $state.go('timer-info');
+        }).catch(function() {
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Submission Failed',
+            template: 'Sorry for the inconvinience.'
+          });
         });
       });
     }
