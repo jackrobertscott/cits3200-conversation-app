@@ -1,23 +1,29 @@
 <ion-view view-title="Reflection">
   <ion-content class="padding-horizontal">
 
-  <div class="list card" ng-repeat="prepare in vm.prepares">
-    <div class="item">
-      <p>{{prepare.createdAt | date:'medium'}}</p>
-    </div>
-    <div class="item">
-      <a ng-click="prepare.show = true" ng-if="!prepare.show">Show</a>
-      <a ng-click="prepare.show = false" ng-if="prepare.show">Hide</a>
-    </div>
-    <div class="item" ng-if="prepare.show">
-      <div ng-repeat="response in prepare.responses">
-        <h2>{{response.question}}</h2>
-        <br>
-        <p>{{response.answer || "..."}}</p>
-        <br>
+    <div class="card" ng-if="!vm.prepares.length">
+      <div class="item item-text-wrap">
+        No preparation information saved yet.
       </div>
     </div>
-  </div>
+
+    <div class="list card" ng-repeat="prepare in vm.prepares">
+      <div class="item">
+        <p>{{prepare.createdAt | date:'medium'}}</p>
+      </div>
+      <div class="item">
+        <a ng-click="prepare.show = true" ng-if="!prepare.show">Show</a>
+        <a ng-click="prepare.show = false" ng-if="prepare.show">Hide</a>
+      </div>
+      <div class="item" ng-if="prepare.show">
+        <div ng-repeat="response in prepare.responses">
+          <h2>{{response.question}}</h2>
+          <br>
+          <p>{{response.answer || "..."}}</p>
+          <br>
+        </div>
+      </div>
+    </div>
 
   </ion-content>
   <ion-footer-bar class="bar-stable" ui-sref="menu">

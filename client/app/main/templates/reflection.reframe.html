@@ -1,6 +1,12 @@
 <ion-view view-title="Reflection">
   <ion-content class="padding-horizontal">
 
+    <div class="card" ng-if="!vm.reframes.length">
+      <div class="item item-text-wrap">
+        No reframed information saved yet.
+      </div>
+    </div>
+
     <div class="list card" ng-repeat="reframe in vm.reframes">
       <div class="item">
         <p>{{reframe.text}}</p>
