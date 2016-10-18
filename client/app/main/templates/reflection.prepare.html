@@ -1,7 +1,19 @@
 <ion-view view-title="Reflection">
   <ion-content class="padding">
-    <a class="button button-block button-stable" ui-sref="menu">
-      Back to menu
-    </a>
+
+  <div class="list card" ng-repeat="prepare in vm.prepares">
+    <div class="item" ng-repeat="response in prepare.responses">
+      <p>
+        {{response.question}}
+        <br>
+        <br>
+        {{response.answer || "..."}}
+      </p>
+    </div>
+  </div>
+
   </ion-content>
+  <ion-footer-bar class="bar-stable" ui-sref="menu">
+    <div class="title">Back to Menu</div>
+  </ion-footer-bar>
 </ion-view>

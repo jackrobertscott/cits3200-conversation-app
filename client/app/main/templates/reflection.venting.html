@@ -1,7 +1,17 @@
 <ion-view view-title="Reflection">
   <ion-content class="padding">
-    <a class="button button-block button-stable" ui-sref="menu">
-      Back to Menu
-    </a>
+
+    <div class="list card" ng-repeat="venting in vm.ventings">
+      <div class="item">
+        <p>{{venting.text}}</p>
+      </div>
+      <div class="item">
+        <p>{{venting.createdAt | date:'medium'}}</p>
+      </div>
+    </div>
+
   </ion-content>
+  <ion-footer-bar class="bar-stable" ui-sref="menu">
+    <div class="title">Back to Menu</div>
+  </ion-footer-bar>
 </ion-view>

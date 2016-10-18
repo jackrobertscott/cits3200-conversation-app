@@ -13,12 +13,18 @@
     vm.getVentings = getVentings;
     vm.getReframes = getReframes;
     vm.getPrepares = getPrepares;
+    vm.ventings;
+    vm.reframes;
+    vm.prepares;
 
     activate();
 
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
+      vm.ventings = getVentings();
+      vm.reframes = getReframes();
+      vm.prepares = getPrepares();
     }
 
     function getVentings() {
