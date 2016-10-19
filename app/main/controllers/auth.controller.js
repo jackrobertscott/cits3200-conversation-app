@@ -15,7 +15,7 @@
       password: ''
     };
     vm.login = login;
-    vm.logOut = logOut;
+    vm.logout = logout;
     vm.signup = signup;
 
     activate();
@@ -49,7 +49,7 @@
       }
     }
 
-    function logOut() {
+    function logout() {
       authService.$signOut().then(function() {
         $state.go('login');
       });

@@ -1,7 +1,7 @@
 /* global firebase:true */
 'use strict';
 
-describe('authentication controller', function() {
+describe('AuthController', function() {
 
   var config = {
     apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
@@ -27,21 +27,40 @@ describe('authentication controller', function() {
     AuthController = $controller('AuthController', { $state: $state });
   });
 
-    /*-----SPECS-------*/
+  // -------- TESTS --------
+
   it('should exist', function() {
     expect(AuthController).toBeDefined();
   });
 
-  // it('should have login function go to menu', function() {
-  //   expect($state).toBeDefined('menu');
-  // });
+  it('should not have .nonExistant() function', function() {
+    expect(AuthController.nonExistant).not.toBeDefined();
+  });
 
-  it('should have login function', function() {
+  it('should have .login() function', function() {
     expect(AuthController.login).toBeDefined();
   });
 
-  it('should not have poopie function', function() {
-    expect(AuthController.poopie).not.toBeDefined();
+  it('should have .logout() function', function() {
+    expect(AuthController.logout).toBeDefined();
   });
+
+  it('should have .signup() function', function() {
+    expect(AuthController.signup).toBeDefined();
+  });
+
+  it('should have empty credentials', function() {
+    var c = AuthController.credentials;
+    expect(c).toBeDefined();
+    expect(c.email).toEqual('');
+    expect(c.password).toEqual('');
+  });
+
+  // it('should be $state "login"', function() {
+  //   $state.go('login');
+  //   $rootScope.digest();
+  //   console.log($state.current);
+  //   expect($state.current).toEqual('login');
+  // });
 
 });
