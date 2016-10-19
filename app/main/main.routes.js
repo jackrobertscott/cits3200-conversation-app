@@ -29,6 +29,7 @@
       .state('about', {
         url: '/about',
         templateUrl: 'main/templates/about.html',
+        resolve: requireAuthenication(),
       })
       .state('menu', {
         url: '/menu',

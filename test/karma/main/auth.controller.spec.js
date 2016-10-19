@@ -115,10 +115,21 @@ describe('AuthController', function() {
   });
 
   it('should redirect to login page if not authenticated', function() {
-    $rootScope.$apply(function() {
-      $state.go('menu');
-    });
+    $state.go('menu');
+    $rootScope.$digest();
     expect($state.current.name).toEqual('login');
+  });
+
+  it('should load the signup screen', function() {
+    $state.go('signup');
+    $rootScope.$digest();
+    expect($state.current.name).toBe('signup');
+  });
+
+  it('should load the login screen', function() {
+    $state.go('login');
+    $rootScope.$digest();
+    expect($state.current.name).toBe('login');
   });
 
 });

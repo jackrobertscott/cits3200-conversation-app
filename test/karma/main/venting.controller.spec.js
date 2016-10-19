@@ -9,10 +9,14 @@ describe('VentingController', function() {
   var VentingController;
   var $controller;
   var $state;
+  var $rootScope;
+  var authService;
 
-  beforeEach(inject(function(_$controller_, _$state_) {
+  beforeEach(inject(function(_$controller_, _$state_, _$rootScope_, _authService_) {
     $controller = _$controller_;
     $state = _$state_;
+    $rootScope = _$rootScope_;
+    authService = _authService_;
   }));
 
   beforeEach(function() {
@@ -40,6 +44,14 @@ describe('VentingController', function() {
       expect(VentingController.create).toBeDefined();
     });
 
+  });
+
+  it('should load the venting screen when authenticated', function() {
+    // this prevents the authService redirecting when not logged in
+    spyOn(authService, '$requireSignIn').and.returnValue(true);
+    $state.go('venting');
+    $rootScope.$digest();
+    expect($state.current.name).toBe('venting');
   });
 
 });
