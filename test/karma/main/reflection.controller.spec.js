@@ -16,13 +16,22 @@ describe('ReflectionController', function() {
   var ReflectionController;
   var $controller;
   var $state;
+  var ventingService;
+  var prepareService;
+  var reframeService;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_) {
+  beforeEach(angular.mock.inject(function(_$controller_, _$state_, _ventingService_, _prepareService_, _reframeService_) {
     $controller = _$controller_;
     $state = _$state_;
+    ventingService = _ventingService_;
+    prepareService = _prepareService_;
+    reframeService = _reframeService_;
   }));
 
   beforeEach(function() {
+    spyOn(ventingService, 'getByUserId').and.callThrough();
+    spyOn(prepareService, 'getByUserId').and.callThrough();
+    spyOn(reframeService, 'getByUserId').and.callThrough();
     ReflectionController = $controller('ReflectionController', {
       $state: $state,
       currentAuth: {
@@ -66,6 +75,18 @@ describe('ReflectionController', function() {
   it('should fill the prepares array', function() {
     expect(ReflectionController.prepares).toBeDefined();
     expect(ReflectionController.prepares.length).toBeDefined();
+  });
+
+  it('should have called ventingService.getByUserId()', function() {
+    expect(ventingService.getByUserId).toHaveBeenCalled();
+  });
+
+  it('should have called prepareService.getByUserId()', function() {
+    expect(prepareService.getByUserId).toHaveBeenCalled();
+  });
+
+  it('should have called reframeService.getByUserId()', function() {
+    expect(reframeService.getByUserId).toHaveBeenCalled();
   });
 
 });

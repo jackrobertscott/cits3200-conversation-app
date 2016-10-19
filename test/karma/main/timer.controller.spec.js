@@ -37,6 +37,10 @@ describe('TimerController', function() {
     expect(TimerController).toBeDefined();
   });
 
+  it('should not have .nonExistant() function', function() {
+    expect(TimerController.nonExistant).not.toBeDefined();
+  });
+
   it('should have .stopCountdown() function', function() {
     expect(TimerController.stopCountdown).toBeDefined();
   });

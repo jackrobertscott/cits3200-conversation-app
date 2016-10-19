@@ -35,6 +35,8 @@
       SubTip: this.preparationTips[TIP_INDEX].SubTip1
     };
     vm.submit = submit;
+    vm.changeTip = changeTip;
+    vm.changeSubTip = changeSubTip;
 
     activate();
 
