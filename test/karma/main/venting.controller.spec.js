@@ -2,22 +2,15 @@
 
 describe('VentingController', function() {
 
-  // var config = {
-  //   apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
-  //   authDomain: 'cits3200-conversations.firebaseapp.com',
-  //   databaseURL: 'https://cits3200-conversations.firebaseio.com',
-  //   storageBucket: '',
-  //   messagingSenderId: '992134189372'
-  // };
-  // firebase.initializeApp(config);
-
-  beforeEach(angular.mock.module('main'));
+  beforeEach(module('main'));
+  // this loads in all the template files
+  beforeEach(module('ngHtml2Js'));
 
   var VentingController;
   var $controller;
   var $state;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_) {
+  beforeEach(inject(function(_$controller_, _$state_) {
     $controller = _$controller_;
     $state = _$state_;
   }));
@@ -41,8 +34,12 @@ describe('VentingController', function() {
     expect(VentingController.nonExistant).not.toBeDefined();
   });
 
-  it('should have .create() function', function() {
-    expect(VentingController.create).toBeDefined();
+  describe('.create()', function() {
+
+    it('should exist', function() {
+      expect(VentingController.create).toBeDefined();
+    });
+
   });
 
 });

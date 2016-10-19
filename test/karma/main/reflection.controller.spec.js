@@ -2,16 +2,9 @@
 
 describe('ReflectionController', function() {
 
-  // var config = {
-  //   apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
-  //   authDomain: 'cits3200-conversations.firebaseapp.com',
-  //   databaseURL: 'https://cits3200-conversations.firebaseio.com',
-  //   storageBucket: '',
-  //   messagingSenderId: '992134189372'
-  // };
-  // firebase.initializeApp(config);
-
-  beforeEach(angular.mock.module('main'));
+  beforeEach(module('main'));
+  // this loads in all the template files
+  beforeEach(module('ngHtml2Js'));
 
   var ReflectionController;
   var $controller;
@@ -20,7 +13,7 @@ describe('ReflectionController', function() {
   var prepareService;
   var reframeService;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_, _ventingService_, _prepareService_, _reframeService_) {
+  beforeEach(inject(function(_$controller_, _$state_, _ventingService_, _prepareService_, _reframeService_) {
     $controller = _$controller_;
     $state = _$state_;
     ventingService = _ventingService_;
@@ -29,6 +22,8 @@ describe('ReflectionController', function() {
   }));
 
   beforeEach(function() {
+    // these spies are before the controller constructor because they are
+    // called when the controller is constructed
     spyOn(ventingService, 'getByUserId').and.callThrough();
     spyOn(prepareService, 'getByUserId').and.callThrough();
     spyOn(reframeService, 'getByUserId').and.callThrough();
@@ -54,27 +49,43 @@ describe('ReflectionController', function() {
     expect(ReflectionController.getVentings).toBeDefined();
   });
 
-  it('should fill the ventings array', function() {
-    expect(ReflectionController.ventings).toBeDefined();
-    expect(ReflectionController.ventings.length).toBeDefined();
+  describe('.getVentings()', function() {
+
+    it('should exist', function() {
+      expect(ReflectionController.getVentings).toBeDefined();
+    });
+
+    it('should fill the ventings array', function() {
+      expect(ReflectionController.ventings).toBeDefined();
+      expect(ReflectionController.ventings.length).toBeDefined();
+    });
+
   });
 
-  it('should have .getReframes() function', function() {
-    expect(ReflectionController.getReframes).toBeDefined();
+  describe('.getReframes()', function() {
+
+    it('should exist', function() {
+      expect(ReflectionController.getReframes).toBeDefined();
+    });
+
+    it('should fill the reframes array', function() {
+      expect(ReflectionController.reframes).toBeDefined();
+      expect(ReflectionController.reframes.length).toBeDefined();
+    });
+
   });
 
-  it('should fill the reframes array', function() {
-    expect(ReflectionController.reframes).toBeDefined();
-    expect(ReflectionController.reframes.length).toBeDefined();
-  });
+  describe('.getPrepares()', function() {
 
-  it('should have .getPrepares() function', function() {
-    expect(ReflectionController.getPrepares).toBeDefined();
-  });
+    it('should exist', function() {
+      expect(ReflectionController.getPrepares).toBeDefined();
+    });
 
-  it('should fill the prepares array', function() {
-    expect(ReflectionController.prepares).toBeDefined();
-    expect(ReflectionController.prepares.length).toBeDefined();
+    it('should fill the prepares array', function() {
+      expect(ReflectionController.prepares).toBeDefined();
+      expect(ReflectionController.prepares.length).toBeDefined();
+    });
+
   });
 
   it('should have called ventingService.getByUserId()', function() {

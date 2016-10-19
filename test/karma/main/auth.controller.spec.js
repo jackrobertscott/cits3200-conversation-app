@@ -12,19 +12,31 @@ describe('AuthController', function() {
   };
   firebase.initializeApp(config);
 
-  beforeEach(angular.mock.module('main'));
+  beforeEach(module('main'));
+  // this loads in all the template files
+  beforeEach(module('ngHtml2Js'));
 
   var AuthController;
   var $controller;
   var $state;
+  var $ionicPopup;
+  var $ionicLoading;
+  var authService;
+  var $rootScope;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_) {
+  beforeEach(inject(function(_$controller_, _$state_, _$ionicPopup_, _$ionicLoading_, _$rootScope_, _authService_) {
     $controller = _$controller_;
     $state = _$state_;
+    $ionicPopup = _$ionicPopup_;
+    $ionicLoading = _$ionicLoading_;
+    $rootScope = _$rootScope_;
+    authService = _authService_;
   }));
 
   beforeEach(function() {
-    AuthController = $controller('AuthController', { $state: $state });
+    AuthController = $controller('AuthController', {
+      $state: $state
+    });
   });
 
   // -------- TESTS --------
@@ -37,16 +49,62 @@ describe('AuthController', function() {
     expect(AuthController.nonExistant).not.toBeDefined();
   });
 
-  it('should have .login() function', function() {
-    expect(AuthController.login).toBeDefined();
+  describe('.login()', function() {
+
+    it('should exist', function() {
+      expect(AuthController.login).toBeDefined();
+    });
+
+    it('should alert when inputs empty', function() {
+      spyOn($ionicPopup, 'alert').and.callThrough();
+      AuthController.login();
+      expect($ionicPopup.alert).toHaveBeenCalled();
+    });
+
+    it('should show loading screen when full inputs are submitted', function() {
+      spyOn($ionicLoading, 'show').and.callThrough();
+      AuthController.credentials.email = 'wrong@email.com';
+      AuthController.credentials.password = 'password';
+      AuthController.login();
+      expect($ionicLoading.show).toHaveBeenCalled();
+    });
+
   });
 
-  it('should have .logout() function', function() {
-    expect(AuthController.logout).toBeDefined();
+  describe('.logout()', function() {
+
+    it('should exist', function() {
+      expect(AuthController.logout).toBeDefined();
+    });
+
+    it('should call the .$signOut() function in authService', function() {
+      spyOn(authService, '$signOut').and.callThrough();
+      AuthController.logout();
+      expect(authService.$signOut).toHaveBeenCalled();
+    });
+
   });
 
-  it('should have .signup() function', function() {
-    expect(AuthController.signup).toBeDefined();
+  describe('.signup()', function() {
+
+    it('should exist', function() {
+      expect(AuthController.signup).toBeDefined();
+    });
+
+    it('should alert when inputs empty', function() {
+      spyOn($ionicPopup, 'alert').and.callThrough();
+      AuthController.signup();
+      expect($ionicPopup.alert).toHaveBeenCalled();
+    });
+
+    it('should show loading screen when full inputs are submitted', function() {
+      spyOn($ionicLoading, 'show').and.callThrough();
+      AuthController.credentials.email = 'wrong@email.com';
+      AuthController.credentials.password = 'password';
+      AuthController.signup();
+      expect($ionicLoading.show).toHaveBeenCalled();
+    });
+
   });
 
   it('should have empty credentials', function() {
@@ -56,11 +114,11 @@ describe('AuthController', function() {
     expect(c.password).toEqual('');
   });
 
-  // it('should be $state "login"', function() {
-  //   $state.go('login');
-  //   $rootScope.digest();
-  //   console.log($state.current);
-  //   expect($state.current).toEqual('login');
-  // });
+  it('should redirect to login page if not authenticated', function() {
+    $rootScope.$apply(function() {
+      $state.go('menu');
+    });
+    expect($state.current.name).toEqual('login');
+  });
 
 });

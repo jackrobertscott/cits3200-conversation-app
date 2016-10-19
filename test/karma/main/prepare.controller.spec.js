@@ -2,22 +2,15 @@
 
 describe('PrepareController', function() {
 
-  // var config = {
-  //   apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
-  //   authDomain: 'cits3200-conversations.firebaseapp.com',
-  //   databaseURL: 'https://cits3200-conversations.firebaseio.com',
-  //   storageBucket: '',
-  //   messagingSenderId: '992134189372'
-  // };
-  // firebase.initializeApp(config);
-
-  beforeEach(angular.mock.module('main'));
+  beforeEach(module('main'));
+  // this loads in all the template files
+  beforeEach(module('ngHtml2Js'));
 
   var PrepareController;
   var $controller;
   var $state;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_) {
+  beforeEach(inject(function(_$controller_, _$state_) {
     $controller = _$controller_;
     $state = _$state_;
   }));
@@ -41,20 +34,36 @@ describe('PrepareController', function() {
     expect(PrepareController.nonExistant).not.toBeDefined();
   });
 
-  it('should have .submit() function', function() {
-    expect(PrepareController.submit).toBeDefined();
+  describe('.submit()', function() {
+
+    it('should exist', function() {
+      expect(PrepareController.submit).toBeDefined();
+    });
+
   });
 
-  it('should have .toggleListItem() function', function() {
-    expect(PrepareController.toggleListItem).toBeDefined();
+  describe('.toggleListItem()', function() {
+
+    it('should exist', function() {
+      expect(PrepareController.toggleListItem).toBeDefined();
+    });
+
   });
 
-  it('should have .isListItemShown() function', function() {
-    expect(PrepareController.isListItemShown).toBeDefined();
+  describe('.isListItemShown()', function() {
+
+    it('should exist', function() {
+      expect(PrepareController.isListItemShown).toBeDefined();
+    });
+
   });
 
-  it('should have .isItemComplete() function', function() {
-    expect(PrepareController.isItemComplete).toBeDefined();
+  describe('.isItemComplete()', function() {
+
+    it('should exist', function() {
+      expect(PrepareController.isItemComplete).toBeDefined();
+    });
+
   });
 
   it('should have list items set', function() {

@@ -2,22 +2,15 @@
 
 describe('ReframeController', function() {
 
-  // var config = {
-  //   apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
-  //   authDomain: 'cits3200-conversations.firebaseapp.com',
-  //   databaseURL: 'https://cits3200-conversations.firebaseio.com',
-  //   storageBucket: '',
-  //   messagingSenderId: '992134189372'
-  // };
-  // firebase.initializeApp(config);
-
-  beforeEach(angular.mock.module('main'));
+  beforeEach(module('main'));
+  // this loads in all the template files
+  beforeEach(module('ngHtml2Js'));
 
   var ReframeController;
   var $controller;
   var $state;
 
-  beforeEach(angular.mock.inject(function(_$controller_, _$state_) {
+  beforeEach(inject(function(_$controller_, _$state_) {
     $controller = _$controller_;
     $state = _$state_;
   }));
@@ -41,16 +34,45 @@ describe('ReframeController', function() {
     expect(ReframeController.nonExistant).not.toBeDefined();
   });
 
-  it('should have .submit() function', function() {
-    expect(ReframeController.submit).toBeDefined();
+  describe('.submit()', function() {
+
+    it('should exist', function() {
+      expect(ReframeController.submit).toBeDefined();
+    });
+
   });
 
-  it('should have .changeTip() function', function() {
-    expect(ReframeController.changeTip).toBeDefined();
+  describe('.changeTip()', function() {
+
+    it('should exist', function() {
+      expect(ReframeController.changeTip).toBeDefined();
+    });
+
+    it('should be able to change the main tip', function() {
+      ReframeController.changeTip();
+      expect(ReframeController.currentTip.Tip).toEqual(ReframeController.preparationTips[1].Tip);
+      ReframeController.changeTip();
+      expect(ReframeController.currentTip.Tip).toEqual(ReframeController.preparationTips[2].Tip);
+    });
+
   });
 
-  it('should have .changeSubTip() function', function() {
-    expect(ReframeController.changeSubTip).toBeDefined();
+  describe('.changeSubTip()', function() {
+
+    it('should exist', function() {
+      expect(ReframeController.changeSubTip).toBeDefined();
+    });
+
+    it('should be able to change the sub tip', function() {
+      ReframeController.changeSubTip();
+      expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[0].SubTip2);
+      ReframeController.changeTip();
+      ReframeController.changeSubTip();
+      expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[1].SubTip1);
+      ReframeController.changeSubTip();
+      expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[1].SubTip2);
+    });
+
   });
 
   it('should have an array of preparation tips', function() {
@@ -62,23 +84,6 @@ describe('ReframeController', function() {
     expect(ReframeController.currentTip).toBeDefined();
     expect(ReframeController.currentTip.Tip).toEqual(ReframeController.preparationTips[0].Tip);
     expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[0].SubTip1);
-  });
-
-  it('should be able to change the main tip', function() {
-    ReframeController.changeTip();
-    expect(ReframeController.currentTip.Tip).toEqual(ReframeController.preparationTips[1].Tip);
-    ReframeController.changeTip();
-    expect(ReframeController.currentTip.Tip).toEqual(ReframeController.preparationTips[2].Tip);
-  });
-
-  it('should be able to change the sub tip', function() {
-    ReframeController.changeSubTip();
-    expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[0].SubTip2);
-    ReframeController.changeTip();
-    ReframeController.changeSubTip();
-    expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[1].SubTip1);
-    ReframeController.changeSubTip();
-    expect(ReframeController.currentTip.SubTip).toEqual(ReframeController.preparationTips[1].SubTip2);
   });
 
 });
