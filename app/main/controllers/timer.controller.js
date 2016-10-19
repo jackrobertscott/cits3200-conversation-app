@@ -7,7 +7,7 @@
     .controller('TimerController', TimerController);
 
   /* @ngInject */
-  function TimerController($interval /*, timerService*/ ) {
+  function TimerController($interval, $ionicPopup, $state) {
     var vm = this;
     var COUNT_TIME = 90;
     var status;
@@ -44,6 +44,24 @@
             vm.count = vm.count - 1;
           } else {
             stopCountdown();
+            $ionicPopup.show({
+              title: 'Time Finished',
+              template: 'Would you like to restart the countdown or move on?',
+              buttons: [{ // Array[Object] (optional). Buttons to place in the popup footer.
+                text: 'Restart',
+                type: 'button-calm',
+                onTap: function() {
+                  resetCountdown();
+                  beginCountdown();
+                }
+              }, {
+                text: 'Next',
+                type: 'button-positive',
+                onTap: function() {
+                  $state.go('prepare');
+                }
+              }]
+            });
           }
         }, 1000);
       }

@@ -16,17 +16,17 @@
     vm.isListItemShown = isListItemShown;
     vm.isItemComplete = isItemComplete;
     vm.listItems = [{
-      stepName: 'Consider Each Others Wants',
+      stepName: 'Consider Each Others Needs',
       contents: {
-        input1label: 'What do you want?',
+        input1label: 'What do you need?',
         input1: null,
-        input2label: 'What do they want?',
+        input2label: 'What do they need?',
         input2: null,
         explanation: 'These are the positions you both hold going into the conversation. This is also your first step in building curiosity, considering the issue from their perspective as well as your own.',
         completed: false
       }
     }, {
-      stepName: 'Why Do Each of You Want That',
+      stepName: 'Why Do Each of You Need That',
       contents: {
         input1label: 'What are your interests?',
         input1: null,

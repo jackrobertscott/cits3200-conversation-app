@@ -2,16 +2,16 @@
   <ion-content class="padding-horizontal">
 
     <div class="card" ng-if="!vm.ventings.length">
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>No venting information saved yet.</p>
       </div>
     </div>
 
     <div class="list card" ng-repeat="venting in vm.ventings">
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>{{venting.text}}</p>
       </div>
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>{{venting.createdAt | date:'medium'}}</p>
       </div>
     </div>

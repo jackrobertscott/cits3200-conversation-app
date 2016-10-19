@@ -2,16 +2,16 @@
   <ion-content class="padding-horizontal">
 
     <div class="card" ng-if="!vm.reframes.length">
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>No reframed information saved yet.</p>
       </div>
     </div>
 
     <div class="list card" ng-repeat="reframe in vm.reframes">
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>{{reframe.text}}</p>
       </div>
-      <div class="item">
+      <div class="item item-text-wrap">
         <p>{{reframe.createdAt | date:'medium'}}</p>
       </div>
     </div>
