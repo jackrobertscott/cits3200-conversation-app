@@ -34,8 +34,8 @@ describe('AuthController', function() {
     $ionicPopup = _$ionicPopup_;
     $ionicLoading = _$ionicLoading_;
     $rootScope = _$rootScope_;
-    authService = _authService_;
     $q = _$q_;
+    authService = _authService_;
   }));
 
   beforeEach(function() {
@@ -159,7 +159,9 @@ describe('AuthController', function() {
     });
 
     it('should call .$signOut() and relocate to the login page', function() {
-      spyOn(authService, '$requireSignIn').and.returnValue(true);
+      spyOn(authService, '$requireSignIn').and.callFake(function() {
+        return true;
+      });
       $state.go('menu');
       $rootScope.$digest();
       expect($state.current.name).toEqual('menu');

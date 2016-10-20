@@ -10,11 +10,13 @@ describe('TimerController', function() {
   var $controller;
   var $state;
   var $interval;
+  var $ionicPopup;
 
-  beforeEach(inject(function(_$controller_, _$state_, _$interval_) {
+  beforeEach(inject(function(_$controller_, _$state_, _$interval_, _$ionicPopup_) {
     $controller = _$controller_;
     $state = _$state_;
     $interval = _$interval_;
+    $ionicPopup = _$ionicPopup_;
   }));
 
   beforeEach(function() {
@@ -58,6 +60,13 @@ describe('TimerController', function() {
       expect(TimerController.count).toEqual(89);
       $interval.flush(100001);
       expect(TimerController.count).toEqual(0);
+    });
+
+    it('should popup modal when reaches 0', function() {
+      spyOn($ionicPopup, 'show').and.callThrough();
+      TimerController.beginCountdown();
+      $interval.flush(100001);
+      expect($ionicPopup.show).toHaveBeenCalled();
     });
 
   });
