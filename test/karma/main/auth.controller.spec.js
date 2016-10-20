@@ -21,16 +21,18 @@ describe('AuthController', function() {
   var $state;
   var $ionicPopup;
   var $ionicLoading;
-  var authService;
   var $rootScope;
+  var $q;
+  var authService;
 
-  beforeEach(inject(function(_$controller_, _$state_, _$ionicPopup_, _$ionicLoading_, _$rootScope_, _authService_) {
+  beforeEach(inject(function(_$controller_, _$state_, _$ionicPopup_, _$ionicLoading_, _$rootScope_, _$q_, _authService_) {
     $controller = _$controller_;
     $state = _$state_;
     $ionicPopup = _$ionicPopup_;
     $ionicLoading = _$ionicLoading_;
     $rootScope = _$rootScope_;
     authService = _authService_;
+    $q = _$q_;
   }));
 
   beforeEach(function() {
@@ -61,12 +63,21 @@ describe('AuthController', function() {
       expect($ionicPopup.alert).toHaveBeenCalled();
     });
 
-    it('should show loading screen when full inputs are submitted', function() {
-      spyOn($ionicLoading, 'show').and.callThrough();
+    it('should show + hide loading screen around calling service', function() {
+      var deffered = $q.defer();
+      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
+      spyOn(authService, '$signInWithEmailAndPassword').and.returnValue(deffered.promise);
+      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
+      deffered.resolve();
+
       AuthController.credentials.email = 'wrong@email.com';
       AuthController.credentials.password = 'password';
       AuthController.login();
+      $rootScope.$digest();
+
       expect($ionicLoading.show).toHaveBeenCalled();
+      expect(authService.$signInWithEmailAndPassword).toHaveBeenCalled();
+      expect($ionicLoading.hide).toHaveBeenCalled();
     });
 
   });
@@ -97,12 +108,21 @@ describe('AuthController', function() {
       expect($ionicPopup.alert).toHaveBeenCalled();
     });
 
-    it('should show loading screen when full inputs are submitted', function() {
-      spyOn($ionicLoading, 'show').and.callThrough();
+    it('should show + hide loading screen around calling service', function() {
+      var deffered = $q.defer();
+      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
+      spyOn(authService, '$createUserWithEmailAndPassword').and.returnValue(deffered.promise);
+      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
+      deffered.resolve();
+
       AuthController.credentials.email = 'wrong@email.com';
       AuthController.credentials.password = 'password';
       AuthController.signup();
+      $rootScope.$digest();
+
       expect($ionicLoading.show).toHaveBeenCalled();
+      expect(authService.$createUserWithEmailAndPassword).toHaveBeenCalled();
+      expect($ionicLoading.hide).toHaveBeenCalled();
     });
 
   });
