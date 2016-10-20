@@ -3,6 +3,8 @@
 
 describe('AuthController', function() {
 
+  // firebase has to be initialed otherwise it breaks...
+  // this is kinda hacky
   var config = {
     apiKey: 'AIzaSyDc37qyP5l9JExJRL4B5QAiTLFhu81hWmo',
     authDomain: 'cits3200-conversations.firebaseapp.com',
@@ -12,8 +14,9 @@ describe('AuthController', function() {
   };
   firebase.initializeApp(config);
 
+  // load the main (angular) module
   beforeEach(module('main'));
-  // this loads in all the template files
+  // this loads in all the template files so you don't get annoying errors
   beforeEach(module('ngHtml2Js'));
 
   var AuthController;
@@ -58,12 +61,17 @@ describe('AuthController', function() {
     });
 
     it('should alert when inputs empty', function() {
+      // spying on functions allow you to check if they are being called
+      // they also allow you to pass fake return values back
+      // .callThrough() just makes it call normaly
       spyOn($ionicPopup, 'alert').and.callThrough();
       AuthController.login();
       expect($ionicPopup.alert).toHaveBeenCalled();
     });
 
     it('should show + hide loading screen around calling service', function() {
+      // we are passing 'resolved' promises to these functions as that's what they usually return
+      // without these promises passed in, the 2nd and 3rd functions wont be called
       var deffered = $q.defer();
       spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
       spyOn(authService, '$signInWithEmailAndPassword').and.returnValue(deffered.promise);
@@ -73,6 +81,8 @@ describe('AuthController', function() {
       AuthController.credentials.email = 'wrong@email.com';
       AuthController.credentials.password = 'password';
       AuthController.login();
+
+      // call digest so that the function is called all the way through
       $rootScope.$digest();
 
       expect($ionicLoading.show).toHaveBeenCalled();
@@ -136,6 +146,7 @@ describe('AuthController', function() {
 
   it('should redirect to login page if not authenticated', function() {
     $state.go('menu');
+    // when you change state, you need to digest to update the actual state
     $rootScope.$digest();
     expect($state.current.name).toEqual('login');
   });
