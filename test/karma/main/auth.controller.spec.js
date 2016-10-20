@@ -56,6 +56,16 @@ describe('AuthController', function() {
 
   describe('.login()', function() {
 
+    beforeEach(function() {
+      // we are passing 'resolved' promises to these functions as that's what they usually return
+      // without these promises passed in, the 2nd and 3rd functions wont be called
+      var deffered = $q.defer();
+      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
+      spyOn(authService, '$signInWithEmailAndPassword').and.returnValue(deffered.promise);
+      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
+      deffered.resolve();
+    });
+
     it('should exist', function() {
       expect(AuthController.login).toBeDefined();
     });
@@ -70,18 +80,9 @@ describe('AuthController', function() {
     });
 
     it('should show + hide loading screen around calling service', function() {
-      // we are passing 'resolved' promises to these functions as that's what they usually return
-      // without these promises passed in, the 2nd and 3rd functions wont be called
-      var deffered = $q.defer();
-      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
-      spyOn(authService, '$signInWithEmailAndPassword').and.returnValue(deffered.promise);
-      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
-      deffered.resolve();
-
       AuthController.credentials.email = 'wrong@email.com';
       AuthController.credentials.password = 'password';
       AuthController.login();
-
       // call digest so that the function is called all the way through
       $rootScope.$digest();
 
@@ -90,23 +91,30 @@ describe('AuthController', function() {
       expect($ionicLoading.hide).toHaveBeenCalled();
     });
 
-  });
+    it('should relocate to the menu page', function() {
+      $rootScope.$digest();
+      expect($state.current.name).toEqual('login');
+      spyOn(authService, '$requireSignIn').and.returnValue(true);
 
-  describe('.logout()', function() {
+      AuthController.credentials.email = 'wrong@email.com';
+      AuthController.credentials.password = 'password';
+      AuthController.login();
+      $rootScope.$digest();
 
-    it('should exist', function() {
-      expect(AuthController.logout).toBeDefined();
-    });
-
-    it('should call the .$signOut() function in authService', function() {
-      spyOn(authService, '$signOut').and.callThrough();
-      AuthController.logout();
-      expect(authService.$signOut).toHaveBeenCalled();
+      expect($state.current.name).toEqual('menu');
     });
 
   });
 
   describe('.signup()', function() {
+
+    beforeEach(function() {
+      var deffered = $q.defer();
+      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
+      spyOn(authService, '$createUserWithEmailAndPassword').and.returnValue(deffered.promise);
+      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
+      deffered.resolve();
+    });
 
     it('should exist', function() {
       expect(AuthController.signup).toBeDefined();
@@ -119,12 +127,6 @@ describe('AuthController', function() {
     });
 
     it('should show + hide loading screen around calling service', function() {
-      var deffered = $q.defer();
-      spyOn($ionicLoading, 'show').and.returnValue(deffered.promise);
-      spyOn(authService, '$createUserWithEmailAndPassword').and.returnValue(deffered.promise);
-      spyOn($ionicLoading, 'hide').and.returnValue(deffered.promise);
-      deffered.resolve();
-
       AuthController.credentials.email = 'wrong@email.com';
       AuthController.credentials.password = 'password';
       AuthController.signup();
@@ -133,6 +135,44 @@ describe('AuthController', function() {
       expect($ionicLoading.show).toHaveBeenCalled();
       expect(authService.$createUserWithEmailAndPassword).toHaveBeenCalled();
       expect($ionicLoading.hide).toHaveBeenCalled();
+    });
+
+    it('should relocate to the menu page', function() {
+      $rootScope.$digest();
+      expect($state.current.name).toEqual('login');
+      spyOn(authService, '$requireSignIn').and.returnValue(true);
+
+      AuthController.credentials.email = 'wrong@email.com';
+      AuthController.credentials.password = 'password';
+      AuthController.signup();
+      $rootScope.$digest();
+
+      expect($state.current.name).toEqual('menu');
+    });
+
+  });
+
+  describe('.logout()', function() {
+
+    it('should exist', function() {
+      expect(AuthController.logout).toBeDefined();
+    });
+
+    it('should call .$signOut() and relocate to the login page', function() {
+      spyOn(authService, '$requireSignIn').and.returnValue(true);
+      $state.go('menu');
+      $rootScope.$digest();
+      expect($state.current.name).toEqual('menu');
+
+      var deffered = $q.defer();
+      spyOn(authService, '$signOut').and.returnValue(deffered.promise);
+      deffered.resolve();
+
+      AuthController.logout();
+      $rootScope.$digest();
+
+      expect(authService.$signOut).toHaveBeenCalled();
+      expect($state.current.name).toEqual('login');
     });
 
   });
