@@ -19,6 +19,9 @@
 
     activate();
 
+    /**
+     * This acts like the controllers constructor
+     */
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
@@ -27,14 +30,23 @@
       vm.prepares = getPrepares();
     }
 
+    /**
+     * Get the ventings array for the given user
+     */
     function getVentings() {
       return ventingService.getByUserId(currentAuth.uid);
     }
 
+    /**
+     * Get the reframes array for the given user
+     */
     function getReframes() {
       return reframeService.getByUserId(currentAuth.uid);
     }
 
+    /**
+     * Get the prepares array for the given user
+     */
     function getPrepares() {
       return prepareService.getByUserId(currentAuth.uid);
     }

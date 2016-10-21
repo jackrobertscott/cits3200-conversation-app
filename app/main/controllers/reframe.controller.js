@@ -40,9 +40,12 @@
 
     activate();
 
+    /**
+     * This acts like the controllers constructor
+     */
     function activate() {
       vm.reframes = reframeService.getByUserId(currentAuth.uid);
-      /*
+      /**
        * Setting the interval for when the tips change
        */
       function slideAlong() {
@@ -60,7 +63,7 @@
       $interval(changeSubTip, 5000);
     }
 
-    /*
+    /**
      * Function for changing which tip is changing.
      * Goes through the array of objects preparationTips one at a time
      * If it gets to the end of the array returns to the start
@@ -75,7 +78,7 @@
       vm.currentTip.Tip = vm.preparationTips[TIP_INDEX].Tip; //changing to the new tip
     }
 
-    /*
+    /**
      * Function for changing the sub tip from two possible.
      * Checks if it is in the first or second subtip then changes to the other
      */
@@ -89,6 +92,9 @@
       }
     }
 
+    /**
+     * Validate and save the form's data to the server
+     */
     function submit() {
       if (!vm.text.trim()) {
         return $ionicPopup.alert({

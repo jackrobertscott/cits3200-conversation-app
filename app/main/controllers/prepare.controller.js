@@ -69,12 +69,18 @@
 
     activate();
 
+    /**
+     * This acts like the controllers constructor
+     */
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
       vm.prepares = prepareService.getByUserId(currentAuth.uid);
     }
 
+    /**
+     * Validate and save the form's data to the server
+     */
     function submit() {
       if (!vm.listItems[0].contents.input1 || !vm.listItems[0].contents.input1.trim()) { // validation
         return $ionicPopup.alert({
@@ -111,6 +117,10 @@
       });
     }
 
+    /**
+     * Toggle the shown list item value
+     * @param  {Object} listItem
+     */
     function toggleListItem(listItem) {
       if (listItem.contents.input1 !== null && listItem.contents.input1 !== '' &&
         listItem.contents.input2 !== null && listItem.contents.input2 !== '') {
@@ -124,10 +134,18 @@
       }
     }
 
+    /**
+     * Check if the given is item is show
+     * @param  {Object}  listItem
+     */
     function isListItemShown(listItem) {
       return this.shownListItem === listItem;
     }
 
+    /**
+     * Check if the list item is completed
+     * @param  {Obeject}  listItem
+     */
     function isItemComplete(listItem) {
       return listItem.contents.completed;
     }

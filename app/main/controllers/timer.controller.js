@@ -27,11 +27,18 @@
 
     activate();
 
+    /**
+     * This acts like the controllers constructor
+     */
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
     }
 
+    /**
+     * Stop the countdown timer
+     * Stop the audio
+     */
     function stopCountdown() {
       if (status) {
         $interval.cancel(status);
@@ -42,6 +49,10 @@
       }
     }
 
+    /**
+     * Start the countdown timer
+     * Start the audio
+     */
     function beginCountdown() {
       if (!status) {
         vm.active = true;
@@ -75,12 +86,18 @@
       }
     }
 
+    /**
+     * Reset the countdown to 90 seconds
+     */
     function resetCountdown() {
       stopCountdown();
       vm.count = COUNT_TIME;
       vm.sound.stop();
     }
 
+    /**
+     * Increment the motivation counter and prepare audio
+     */
     function motivate() {
       vm.motivation.count = vm.motivation.count + 1;
       if (vm.motivation.count === 10) {

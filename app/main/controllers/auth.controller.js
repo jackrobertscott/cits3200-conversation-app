@@ -20,6 +20,9 @@
 
     activate();
 
+    /**
+     * This acts like the controllers constructor
+     */
     function activate() {
       // things you want to do/initialise (like variables) from things like services (ask Jack)
       // can usually ignore this function
