@@ -2,16 +2,12 @@
   <ion-content class="padding">
     <!-- Content: Start -->
 
-    <h2 class="countdown">
-      {{ vm.count }}
-    </h2>
-
     <!--
     Rainbow animation from CodePen.io
     A PEN BY Dronca Raul
     http://codepen.io/rauldronca/pen/RGAXEZ
     -->
-    <div class="rainbow">
+    <div class="rainbow" ng-click="vm.motivate()">
       <div class="line line-1"></div>
       <div class="line line-2"></div>
       <div class="line line-3"></div>
@@ -33,6 +29,10 @@
       <div class="line line-19"></div>
       <div class="dot"></div>
     </div>
+
+    <h2 class="countdown">
+      {{ vm.count }}
+    </h2>
 
     <div class="row">
       <div class="col">

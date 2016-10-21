@@ -18,7 +18,12 @@
     vm.stopCountdown = stopCountdown;
     vm.beginCountdown = beginCountdown;
     vm.resetCountdown = resetCountdown;
-    vm.sound = ngAudio.load('main/assets/audio/Podington_Bear_-_Starling.mp3');
+    vm.sound = ngAudio.load('main/assets/audio/calm.mp3');
+    vm.motivation = {
+      count: 0,
+      sound: ngAudio.load('main/assets/audio/motivation.mp3'),
+    };
+    vm.motivate = motivate;
 
     activate();
 
@@ -74,6 +79,14 @@
       stopCountdown();
       vm.count = COUNT_TIME;
       vm.sound.stop();
+    }
+
+    function motivate() {
+      vm.motivation.count = vm.motivation.count + 1;
+      if (vm.motivation.count === 10) {
+        vm.motivation.sound.play();
+        vm.motivation.count = 0;
+      }
     }
   }
 })();
