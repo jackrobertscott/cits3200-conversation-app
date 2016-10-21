@@ -17,7 +17,7 @@
 
 This is an mobile application aimed at helping people cope with difficult conversations and avoid escalating their situations.
 
-### Repository
+### Structure
 
 The application is run on an angular ionic framework. The app is wrapped in a browser shell (Cordova), when installed on the mobile. This not only allows us to write the application using web based languages (JavaScript, HMTL, CSS) but also allows use to write only one implementation of the app and have it work on both IOS and Android phones.
 
@@ -33,3 +33,7 @@ To start the app (after you have installed the `npm` and `bower` dependencies) t
 ### Server/Database
 
 The server for the application is hosted and maintained by Google's Firebase. We decided to use this technology because of the limited extend of necessary server requirements, as well as the limited time period we had to develop the application. Firebase has provided us with a quick, easy to setup database hosted on a remote, secure server.
+
+### Repository
+
+https://github.com/jackrobertscott/cits3200-conversation-app
