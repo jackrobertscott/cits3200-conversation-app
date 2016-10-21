@@ -8,5 +8,6 @@
       'ngCordova',
       'ui.router',
       'firebase',
+      'ngAudio',
     ]);
 })();

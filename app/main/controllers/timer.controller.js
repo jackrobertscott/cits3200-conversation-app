@@ -7,7 +7,7 @@
     .controller('TimerController', TimerController);
 
   /* @ngInject */
-  function TimerController($interval, $ionicPopup, $state) {
+  function TimerController($interval, $ionicPopup, $state, ngAudio) {
     var vm = this;
     var COUNT_TIME = 90;
     var status;
@@ -18,6 +18,7 @@
     vm.stopCountdown = stopCountdown;
     vm.beginCountdown = beginCountdown;
     vm.resetCountdown = resetCountdown;
+    vm.sound = ngAudio.load('main/assets/audio/Podington_Bear_-_Starling.mp3');
 
     activate();
 
@@ -30,6 +31,7 @@
       if (status) {
         $interval.cancel(status);
         vm.active = false;
+        vm.sound.pause();
         $('.rainbow .line').css('-webkit-animation-play-state', 'paused');
         status = undefined;
       }
@@ -38,6 +40,7 @@
     function beginCountdown() {
       if (!status) {
         vm.active = true;
+        vm.sound.play();
         $('.rainbow .line').css('-webkit-animation-play-state', 'running');
         status = $interval(function() {
           if (vm.count > 0) {
@@ -70,6 +73,7 @@
     function resetCountdown() {
       stopCountdown();
       vm.count = COUNT_TIME;
+      vm.sound.stop();
     }
   }
 })();

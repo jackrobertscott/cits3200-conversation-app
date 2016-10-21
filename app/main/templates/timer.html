@@ -41,6 +41,11 @@
         </button>
       </div>
       <div class="col">
+        <button class="button button-block button-calm" ng-click="vm.sound.muting = !vm.sound.muting">
+          <i class="icon" ng-class="{'ion-volume-medium': vm.sound.muting, 'ion-volume-mute': !vm.sound.muting}"></i>
+        </button>
+      </div>
+      <div class="col">
         <button class="button button-block button-calm" ng-click="vm.resetCountdown()">
           <i class="icon ion-refresh"></i>
         </button>
