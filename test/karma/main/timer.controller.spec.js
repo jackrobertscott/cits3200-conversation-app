@@ -14,25 +14,25 @@ describe('TimerController', function() {
   var audioOriginal;
   var audioMock;
 
-  beforeEach(inject(function(_$controller_, _$state_, _$interval_, _$ionicPopup_, $window) {
+  beforeEach(inject(function(_$controller_, _$state_, _$interval_, _$ionicPopup_) {
     $controller = _$controller_;
     $state = _$state_;
     $interval = _$interval_;
     $ionicPopup = _$ionicPopup_;
+  }));
+
+  beforeEach(function() {
     // this is needed to allow audio
-    audioOriginal = $window.Audio;
+    audioOriginal = window.Audio;
     audioMock = {
       play: jasmine.createSpy('play'),
       pause: jasmine.createSpy('pause'),
       stop: jasmine.createSpy('stop'),
       addEventListener: jasmine.createSpy('addEventListener'),
     };
-    $window.Audio = function() {
+    window.Audio = function() {
       return audioMock;
     };
-  }));
-
-  beforeEach(function() {
     TimerController = $controller('TimerController', {
       $state: $state,
       currentAuth: {
